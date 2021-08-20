@@ -1,0 +1,11 @@
+RAW_HTML(
+<div>
+  <h1 class="red">Hello, world!</h1>
+  <p>1 + 142856 = ${add_two_numbers(1, 142856)}$</p>
+</div>
+<style>
+  .red {
+    color: red;
+  }
+</style>
+);
