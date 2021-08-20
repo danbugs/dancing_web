@@ -30,7 +30,7 @@ char *render_html(char *html)
 
     regex_t regex;
     int re;
-    re = regcomp(&regex, "\\${.*}\\$", 0);
+    re = regcomp(&regex, "\\${\\w*\\([^$]*\\)}\\$", 0);
     re = regexec(&regex, html, 1, M, 0);
 
     if (!re)
@@ -41,17 +41,20 @@ char *render_html(char *html)
         int evaled_pointer = emscripten_run_script_int(to_eval);
         sprintf(to_eval, "UTF8ToString(%d)", evaled_pointer);
         char *evaled = emscripten_run_script_string(to_eval);
+        free(evaled_pointer);
 
         char rendered_html[strlen(html) - (M[0].rm_eo - M[0].rm_so) + strlen(evaled) + 1];
         char html_until_marker[M[0].rm_so + 1];
         char html_after_marker[strlen(html) - M[0].rm_eo + 1];
-        strncpy(html_until_marker, html, M[0].rm_so);
-        strcpy(html_after_marker, &html[M[0].rm_eo]);
+
+        sprintf(html_until_marker, "%.*s", (int)M[0].rm_so, html);
+        sprintf(html_after_marker, "%s", &html[M[0].rm_eo]);
+
         strcat(rendered_html, html_until_marker);
         strcat(rendered_html, evaled);
         strcat(rendered_html, html_after_marker);
 
-        return rendered_html;
+        return render_html(rendered_html);
     }
     else if (re == REG_NOMATCH)
     {
@@ -60,7 +63,7 @@ char *render_html(char *html)
     else
     {
         html_t error_html =
-            #include "error.cml"
+#include "error.cml"
 
             return error_html;
     }
