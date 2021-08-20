@@ -1,4 +1,4 @@
-# DanCing Web 🕸
+# DanCing Web 🕸 (DCW)
 
 ## Running the example
 
@@ -7,7 +7,7 @@
     - An HTTP Server (e.g., I'm using Python's `http.server` module).
 
 - Now, from inside the example folder, execute:
-    - `emcc hello_world.c ..\src\dancing_web.c` to compile, and
+    - `emcc hello_world.c ../src/dancing_web.c` to compile, and
     - `python3 -m http.server` to run.
 
 To view it, navigate to `http://localhost:8000/` on a browser.
@@ -119,6 +119,10 @@ After this, just create a basic root `index.html` file to call our JavaScript:
     - if your project isn't already a `git` repository, run: `git init`, and
     - next, run: `git submodule add https://github.com/danbugs/dancing_web.git`.
 
-- After this, all you have to do is add `#include "dancing_web/src/dancing_web.h"` at the top of your file and refer to the usage section above on how to get started.
+- After this:
+  - add: `#include "dancing_web/src/dancing_web.h"` at the top of `your_file.c` and refer to the usage section above on how to get started,
+  - to compile, run: `emcc your_file.c ./dancing_web/src/dancing_web.c`, and
+  - to finish off, create the basic root `index.html` file I mentioned in the usage section.
 
+- To update the dependency, run: `git submodule update --remote --merge`.
 

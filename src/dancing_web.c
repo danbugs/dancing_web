@@ -24,7 +24,6 @@ EM_JS(void, displayInner, (html_t html),
           }
           document.body.appendChild(element);
       });
-
 char *render_html(char *html)
 {
     regmatch_t M[1];
@@ -39,23 +38,32 @@ char *render_html(char *html)
         int precision = (M[0].rm_eo - 4) - (M[0].rm_so);
         char to_eval[128];
         sprintf(to_eval, "_%.*s", precision, html + M[0].rm_so + 2);
+        int evaled_pointer = emscripten_run_script_int(to_eval);
+        sprintf(to_eval, "UTF8ToString(%d)", evaled_pointer);
         char *evaled = emscripten_run_script_string(to_eval);
 
         char rendered_html[strlen(html) - (M[0].rm_eo - M[0].rm_so) + strlen(evaled) + 1];
         char html_until_marker[M[0].rm_so + 1];
         char html_after_marker[strlen(html) - M[0].rm_eo + 1];
         strncpy(html_until_marker, html, M[0].rm_so);
-        strncpy(html_after_marker, &html[M[0].rm_eo], strlen(html) - M[0].rm_eo);
+        strcpy(html_after_marker, &html[M[0].rm_eo]);
         strcat(rendered_html, html_until_marker);
         strcat(rendered_html, evaled);
         strcat(rendered_html, html_after_marker);
 
         return rendered_html;
     }
+    else if (re == REG_NOMATCH)
+    {
+        return html;
+    }
+    else
+    {
+        html_t error_html =
+            #include "error.cml"
 
-    html_t error = 
-        #include "error.cml"
-    return error;
+            return error_html;
+    }
 }
 
 void display(html_t raw_html)
