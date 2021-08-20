@@ -20,7 +20,7 @@ File `hello_world.cml`:
 ```
 RAW_HTML(
 <div>
-  <h1 class="red">Hello, world!</h1>
+  <h1 class="red">${hello_world()}$</h1>
   <p>1 + 142856 = ${add_two_numbers(1, 142856)}$</p>
 </div>
 <style>
@@ -31,12 +31,13 @@ RAW_HTML(
 );
 ```
 
-> Note: To get code auto-formatting working for .cml files on VSCode, open `settings.json` and add the following at the end of it:
+> - Note: To get code auto-formatting working for .cml files on VSCode, open `settings.json` and add the following at the end of it:
 >> ```
 >> "files.associations": {
 >>     "*.cml": "html"
 >> },
 >> ```
+> - Refer to the `settings.json` file in the .vscode folder.
 
 You can call C functions within the `${` and `}$` markers. These functions will be executed and the result will display in the client.
 
@@ -58,7 +59,7 @@ Otherwise, you can write HTML directly in your C file with:
 ```
 html_t html = RAW_HTML(
 <div>
-  <h1 class="red">Hello, world!</h1>
+  <h1 class="red">${hello_world()}$</h1>
   <p>1 + 142856 = ${add_two_numbers(1, 142856)}$</p>
 </div>
 <style>
@@ -84,10 +85,21 @@ Overall, a basic example looks like this:
 #include "../src/dancing_web.h"
 
 EMSCRIPTEN_KEEPALIVE // this is compulsory for functions you intend to call from HTML
-int add_two_numbers(int a, int b)
+html_t add_two_numbers(int a, int b) // functions that return content to be rendered must return the html_t type
 {
-    return a + b;
+    // this example illustrates how you can get a another type (i.e., int) to be returned as html_t
+    char *tmp = malloc(128 * sizeof(int)); // don't worry about free-ing this malloc, the framework will free it after rendering
+    int result = a + b;
+    sprintf(tmp, "%d", result); // this works because html_t expands to char*
+    return tmp;
 }
+
+EMSCRIPTEN_KEEPALIVE
+html_t hello_world()
+{
+    return "Hello, World!";
+}
+
 
 int main()
 {
