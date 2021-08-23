@@ -1,4 +1,4 @@
-# DanCing Web 🕸 (DCW)
+# DanCing Web 💃🕸 (DCW)
 
 ## Running the example
 

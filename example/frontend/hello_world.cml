@@ -1,4 +1,4 @@
-RAW_HTML(
+HTML(
 <div>
   <h1 class="red">${hello_world()}$</h1>
   <p>1 + 142856 = ${add_two_numbers(1, 142856)}$</p>

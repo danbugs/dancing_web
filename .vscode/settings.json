@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "*.cml": "html",
-        "dancing_web.h": "c"
+        "dancing_web.h": "c",
+        "dcw.h": "c"
     }
 }
