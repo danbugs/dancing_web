@@ -158,7 +158,7 @@ After this, just create a basic root `index.html` file to call our JavaScript:
 - To start off, download the latest release of the repository:
 ![dynamicLinkingDownload](https://i.imgur.com/L8LfX17.gif)
 
-- Unzip the file in your 
+- Unzip the file in the root of your project and delete the `.zip` file.
 
 - Next, to dynamically link your main module to DCW, create a file called `pre.js` like so:
 
@@ -170,12 +170,25 @@ Module['dynamicLibraries'] = ['/dcw.wasm'];
 
 - Next, create a `Makefile` like so: to facilitate compilation:
 
+File `Makefile`:
+
 ```
 P=<your_file>
 OBJECTS=<your_file>.c
 EMCC=emcc
-EMCC_CFLAGS=-s MAIN_MODULE=1 --pre-js pre.js --js-library build/dcw.js
+EMCC_CFLAGS=-s MAIN_MODULE=1 --pre-js pre.js --js-library dcw-latest/dcw.js
 
 $(P): $(OBJECTS)
 	$(EMCC) $(P).c $(EMCC_CFLAGS)
 ```
+
+- At the top of `<your_file>.c`, add:
+
+File `<your_file>.c`
+```
+#include "dcw-latest/dcw.h"
+
+extern void display_html(html_t raw_html);
+```
+
+- To finish off, create the basic root `index.html` file I mentioned in the usage section.
