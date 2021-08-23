@@ -1,1 +1,1 @@
-Module['dynamicLibraries'] = ['dcw-latest/dcw.wasm'];
+Module['dynamicLibraries'] = ['dcw_latest/dcw.wasm'];

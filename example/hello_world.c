@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <emscripten.h>
-#include "dcw-latest/dcw.h"
+#include "dcw_latest/dcw.h"
 
 extern void display_html(html_t raw_html);
 
