@@ -43,7 +43,6 @@ HTML(
 >   >     "*.cml": "html"
 >   > },
 >   > ```
-> - Alternatively, refer to the `settings.json` file in the .vscode folder of this git repository.
 
 You can call C functions within the `${` and `}$` markers. These functions will be executed and the result will display in the client.
 
