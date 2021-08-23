@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <emscripten.h>
-#include "../src/dancing_web.h"
+#include "dcw_latest/dcw.h"
+
+extern void display_html(html_t raw_html);
 
 EMSCRIPTEN_KEEPALIVE
 html_t add_two_numbers(int a, int b)
@@ -21,7 +23,7 @@ html_t hello_world()
 int main()
 {
     html_t html =
-#include "public/hello_world.cml"
+#include "frontend/hello_world.cml"
 
-        display(html);
+        display_html(html);
 }
