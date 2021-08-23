@@ -8,9 +8,10 @@
   - An HTTP Server (e.g., I'm using Python's `http.server` module).
 
 - Now, do the following:
-  - copy the build folder to the example folder,
-  - run `emmake make` to compile, and
-  - `python3 -m http.server` to run.
+  - at the root of the project, run `emmake make` to compile the side module,
+  - copy the dcw_latest folder from the root of the project to inside the example folder,
+  - run `emmake make` from inside the example folder to compile the main module, and
+  - run `python3 -m http.server` to start the application.
 
 To view it, navigate to `http://localhost:8000/` on a browser.
 
@@ -53,7 +54,7 @@ File `public/hello_world.c`:
 ```
 // ...
 html_t html =
-    #include "public/hello_world.cml"
+    #include "frontend/hello_world.cml"
 // ...
 ```
 
@@ -91,16 +92,17 @@ Overall, a basic example looks like this:
 #include <stdio.h>
 #include <stdlib.h>
 #include <emscripten.h>
-#include "build/dcw.h"
+#include "dcw_latest/dcw.h"
 
-extern void display_html(html_t raw_html);
+extern void display_html(html_t raw_html); // this is necessary for the compiler to know this function will be available at runtime.
 
-EMSCRIPTEN_KEEPALIVE
-html_t add_two_numbers(int a, int b)
+EMSCRIPTEN_KEEPALIVE // this is compulsory for functions you intend to call from HTML
+html_t add_two_numbers(int a, int b) // functions that return content to be rendered must return the html_t or char* types
 {
-    char *tmp = malloc(128 * sizeof(int));
+  // this example illustrates how you can get a another type (i.e., int) to be returned as html_t
+    char *tmp = malloc(128 * sizeof(int)); // don't worry about free-ing this malloc, the framework will free it after rendering
     int result = a + b;
-    sprintf(tmp, "%d", result);
+    sprintf(tmp, "%d", result); // this works because html_t expands to char*
     return tmp;
 }
 
@@ -118,6 +120,8 @@ int main()
         display_html(html);
 }
 ```
+
+> Note: Look at the comments in the example above for deeper understanding of the underlying logic.
 
 After this, just create a basic root `index.html` file to call our JavaScript:
 
@@ -142,6 +146,7 @@ After this, just create a basic root `index.html` file to call our JavaScript:
 ### Using gitsubmodules
 
 - To get started:
+
   - if your project isn't already a `git` repository, run: `git init`, and
   - next, run: `git submodule add https://github.com/danbugs/dancing_web.git`.
 
@@ -156,7 +161,7 @@ After this, just create a basic root `index.html` file to call our JavaScript:
 ### Using dynamic linking
 
 - To start off, download the latest release of the repository:
-![dynamicLinkingDownload](https://i.imgur.com/L8LfX17.gif)
+  ![dynamicLinkingDownload](https://i.imgur.com/L8LfX17.gif)
 
 - Unzip the file in the root of your project and delete the `.zip` file.
 
@@ -176,7 +181,7 @@ File `Makefile`:
 P=<your_file>
 OBJECTS=<your_file>.c
 EMCC=emcc
-EMCC_CFLAGS=-s MAIN_MODULE=1 --pre-js pre.js --js-library dcw-latest/dcw.js
+EMCC_CFLAGS=-s MAIN_MODULE=1 --pre-js pre.js --js-library dcw_latest/dcw.js
 
 $(P): $(OBJECTS)
 	$(EMCC) $(P).c $(EMCC_CFLAGS)
@@ -185,8 +190,9 @@ $(P): $(OBJECTS)
 - At the top of `<your_file>.c`, add:
 
 File `<your_file>.c`
+
 ```
-#include "dcw-latest/dcw.h"
+#include "dcw_latest/dcw.h"
 
 extern void display_html(html_t raw_html);
 ```
