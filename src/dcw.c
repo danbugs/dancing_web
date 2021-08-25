@@ -43,7 +43,7 @@ html_t parse_html(html_t raw_html)
     if (!re)
     {
         int precision = (M[0].rm_eo - 4) - (M[0].rm_so);
-        char to_eval[128];
+        char to_eval[precision + 2];
         sprintf(to_eval, "_%.*s", precision, raw_html + M[0].rm_so + 2);
         char * evaled = (char *) emscripten_run_script_int(to_eval);
 

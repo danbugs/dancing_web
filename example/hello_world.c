@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <emscripten.h>
+// #include "../src/dcw.h" -> you need smt similar (probably dancing_web/src/dcw.h) if you are using git submodules
 #include "dcw_latest/dcw.h"
 
 extern void display_html(html_t raw_html);

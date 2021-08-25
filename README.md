@@ -21,10 +21,9 @@ To view it, navigate to `http://localhost:8000/` on a browser.
 >> emmake make
 >> exit
 >> ```
-> - If you get that "'bash' is not recognized as an internal or external command", see [this](https://stackoverflow.com/questions/42438587/bash-is-not-recognized-as-an-internal-or-external-command) for ways you can run bash from Windows — I'm using WSL.
+> Note: If you get that "Windows Subsystem For Linux has no Installed Distributions" when running the `bash` command, see [this](https://stackoverflow.com/questions/42438587/bash-is-not-recognized-as-an-internal-or-external-command) for ways you can run bash from Windows (I'm using WSL) or follow the steps displayed in your terminal.
 
 > <a name="footnote2"><sup>2</sup></a> I've experienced issues compiling the example code in WSL — I'll be investigating this in the future.
-
 
 ## Overview of the example
 
@@ -219,3 +218,7 @@ extern void display_html(html_t raw_html);
 
 - To compile, execute: `emmake make`.
 - To run, execute: `python3 -m http.server`.
+
+## Notes to Self
+
+To check for any problems (i.e., mem leaks and whatnot) in the code at runtime, compile like so: `emcc hello_world.c ../src/dcw.c --js-library ..\src\dcw.js -fsanitize=address -s ALLOW_MEMORY_GROWTH -s INITIAL_MEMORY=285212672 -gsource-map --source-map-base http://localhost:8000/`. After that, run with: `py -m http.server`.
