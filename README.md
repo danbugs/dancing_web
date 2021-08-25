@@ -8,22 +8,23 @@
   - An HTTP Server (e.g., I'm using Python's `http.server` module).
 
 - Now, do the following:
-  - at the root of the project, run `emmake make`* to compile the side module,
+  - at the root of the project, run `emmake make`<sup>[1](#footnote1)</sup> to compile the side module,
   - copy the dcw_latest folder from the root of the project to inside the example folder,
-  - run `emmake make` from inside the example folder to compile the main module, and
+  - run `emmake make`<sup>[2](#footnote2)</sup> from inside the example folder to compile the main module, and
   - run `python3 -m http.server` to start the application.
 
 To view it, navigate to `http://localhost:8000/` on a browser.
 
-> Note: I've experienced issues compiling the example code in WSL — I'll be investigating this in the future.
-
-> *: The root level `Makefile` was designed for POSIX-compliant systems. To run it on Windows, you might have to do:
+> <a name="footnote1"><sup>1</sup></a> The root level `Makefile` was designed for POSIX-compliant systems. To run it on Windows, you might have to do:
 >> ```
 >> bash
 >> emmake make
 >> exit
 >> ```
 > - If you get that "'bash' is not recognized as an internal or external command", see [this](https://stackoverflow.com/questions/42438587/bash-is-not-recognized-as-an-internal-or-external-command) for ways you can run bash from Windows — I'm using WSL.
+
+> <a name="footnote2"><sup>2</sup></a> I've experienced issues compiling the example code in WSL — I'll be investigating this in the future.
+
 
 ## Overview of the example
 
@@ -45,18 +46,18 @@ HTML(
 );
 ```
 
-> - Note: To get code auto-formatting working for .cml files on VSCode, open `settings.json` and add the following at the end of it:
->   > ```
->   > "files.associations": {
->   >     "*.cml": "html"
->   > },
->   > ```
+>Note: To get code auto-formatting working for .cml files on VSCode, open `settings.json` and add the following at the end of it:
+>> ```
+>> "files.associations": {
+>>     "*.cml": "html"
+>> },
+>> ```
 
 You can call C functions within the `${` and `}$` markers. These functions will be executed and the result will display in the UI.
 
 That said, within C, you can use this `hello_world.cml` like so:
 
-File `public/hello_world.c`:
+File `frontend/hello_world.c`:
 
 ```
 // ...
@@ -116,7 +117,7 @@ html_t add_two_numbers(int a, int b) // functions that return content to be rend
 EMSCRIPTEN_KEEPALIVE
 html_t hello_world()
 {
-    return "Hello, World!";
+    return "Hello, World!"; // or see the actual hello_world.c file for a more idiomatic way
 }
 
 int main()
@@ -187,9 +188,10 @@ After this, just create a basic root `index.html` file to call our JavaScript:
 File `pre.js`:
 
 ```
-Module['dynamicLibraries'] = ['dcw_latest/dcw.wasm'];```
+Module['dynamicLibraries'] = ['dcw_latest/dcw.wasm'];
+```
 
-- Next, create a `Makefile` like so: to facilitate compilation:
+- Next, create a `Makefile` to facilitate compilation:
 
 File `Makefile`:
 
