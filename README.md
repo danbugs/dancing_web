@@ -169,7 +169,7 @@ After this, just create a basic root `index.html` file to call our JavaScript:
     extern void display_html(html_t raw_html);
     ```
 
-  - to compile, run: `emcc <your_file>.c dancing_web/src/dcw.c --js-library dancing_web/src/dancing_web.js`, and
+  - to compile, run: `emcc <your_file>.c dancing_web/src/dcw.c --js-library dancing_web/src/dcw.js`, and
   - To finish off, create the basic root `index.html` file I mentioned in the "Overview of the example" section.
   - Now, to run, execute: `python3 -m http.server`.
 

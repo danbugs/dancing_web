@@ -45,12 +45,7 @@ html_t parse_html(html_t raw_html)
         int precision = (M[0].rm_eo - 4) - (M[0].rm_so);
         char to_eval[128];
         sprintf(to_eval, "_%.*s", precision, raw_html + M[0].rm_so + 2);
-
-        int evaled_pointer = emscripten_run_script_int(to_eval);
-        sprintf(to_eval, "UTF8ToString(%d)", evaled_pointer);
-
-        char *evaled = emscripten_run_script_string(to_eval);
-        free((void *) evaled_pointer);
+        char * evaled = (char *) emscripten_run_script_int(to_eval);
 
         char rendered_html[strlen(raw_html) - (M[0].rm_eo - M[0].rm_so) + strlen(evaled) + 1];
         char html_until_marker[M[0].rm_so + 1];
@@ -63,6 +58,7 @@ html_t parse_html(html_t raw_html)
         strcat(rendered_html, evaled);
         strcat(rendered_html, html_after_marker);
 
+        free((void *) evaled);
         return parse_html(rendered_html);
     }
     else if (re == REG_NOMATCH)

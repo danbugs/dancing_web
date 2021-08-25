@@ -7,5 +7,5 @@ mergeInto(LibraryManager.library, {
       element.innerHTML += UTF8ToString(html);
     }
     document.body.appendChild(element);
-  },
+  }
 });
