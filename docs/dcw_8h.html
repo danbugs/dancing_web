@@ -70,8 +70,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle">
 <div class="title">dcw.h File Reference</div>  </div>
 </div><!--header-->
@@ -82,7 +81,8 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="center"><img src="dcw_8h__dep__incl.png" border="0" usemap="#src_2dcw_8hdep" alt=""/></div>
 <map name="src_2dcw_8hdep" id="src_2dcw_8hdep">
 <area shape="rect" title=" " alt="" coords="5,5,88,32"/>
-<area shape="rect" href="dcw_8c.html" title=" " alt="" coords="6,80,87,107"/>
+<area shape="rect" href="dcw_8c.html" title=" " alt="" coords="6,155,87,181"/>
+<area shape="rect" href="dcw__internal_8h.html" title=" " alt="" coords="31,80,171,107"/>
 </map>
 </div>
 </div>
@@ -94,14 +94,9 @@ Macros</h2></td></tr>
 <tr class="separator:af567bc1a447b57bc4f446b93f5a3e8d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb7919934cdf0c9f8d1a017e77cd1b47"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8h.html#adb7919934cdf0c9f8d1a017e77cd1b47">HTML</a>(...)&#160;&#160;&#160;#__VA_ARGS__;</td></tr>
 <tr class="separator:adb7919934cdf0c9f8d1a017e77cd1b47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:ad2cf92b727fd2e8e03bac56c7cfe6522"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8h.html#ad2cf92b727fd2e8e03bac56c7cfe6522">display</a> (<a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> raw_html)</td></tr>
-<tr class="separator:ad2cf92b727fd2e8e03bac56c7cfe6522"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Useful macros function signature(s) intended to be used by the end-user. </p>
+<div class="textblock"><p>Useful macros intended to be used by the end-user. </p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="adb7919934cdf0c9f8d1a017e77cd1b47"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adb7919934cdf0c9f8d1a017e77cd1b47">&#9670;&nbsp;</a></span>HTML</h2>
@@ -134,32 +129,6 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>A macro that expands to the <code>char*</code> type — created to distinguish between normal strings and those that are meant to be rendered to the DOM. </p>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="ad2cf92b727fd2e8e03bac56c7cfe6522"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad2cf92b727fd2e8e03bac56c7cfe6522">&#9670;&nbsp;</a></span>display()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void display </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a>&#160;</td>
-          <td class="paramname"><em>raw_html</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>A wrapper for <code>parse_html</code>, and the JS funtion <code>displayInner</code> .</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">raw_html</td><td>The HTML you want to display. This should be of type html_t or char*. </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>

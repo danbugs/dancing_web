@@ -1,6 +1,7 @@
+#include <emscripten.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <emscripten.h>
+
 #include "dcw_latest/dcw.h"
 // #include "../src/dcw.h" -> for when I'm checking for mem leaks
 
@@ -23,10 +24,16 @@ html_t hello_world()
     return tmp;
 }
 
+EMSCRIPTEN_KEEPALIVE
+void print_hello()
+{
+    printf("hello\n");
+}
+
 int main()
 {
-    html_t html =
+    html_t main =
 #include "frontend/hello_world.cml"
-
-        display_html(html);
+        ;
+    display_html(main);
 }
