@@ -8,7 +8,7 @@ extern void display_html(html_t raw_html);
 EMSCRIPTEN_KEEPALIVE
 html_t add_two_numbers(int a, int b)
 {
-    char *tmp = malloc(128 * sizeof(int));
+    html_t tmp = malloc(128 * sizeof(char));
     int result = a + b;
     sprintf(tmp, "%d", result);
     return tmp;
@@ -17,7 +17,9 @@ html_t add_two_numbers(int a, int b)
 EMSCRIPTEN_KEEPALIVE
 html_t hello_world()
 {
-    return "Hello, World!";
+    html_t tmp = malloc(128 * sizeof(char));
+    sprintf(tmp, "%s", "Hello, World!");
+    return tmp;
 }
 
 int main()
