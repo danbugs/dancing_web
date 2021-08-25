@@ -5,10 +5,13 @@
 P=dcw
 OBJECTS=src/dcw.c src/dcw.js src/dcw.h
 EMCC=emcc
-EMCC_CFLAGS=-s SIDE_MODULE=2 -O1
+EMCC_CFLAGS=-s SIDE_MODULE=2
 
 $(P): $(OBJECTS)
+	rm -rf dcw_latest
+	rm -rf example/dcw_latest
 	mkdir -p dcw_latest
 	cp src/$(P).js dcw_latest/$(P).js
 	cp src/$(P).h dcw_latest/$(P).h
 	$(EMCC) $(EMCC_CFLAGS) src/$(P).c -o dcw_latest/$(P).wasm
+	cp -R dcw_latest example/dcw_latest
