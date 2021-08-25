@@ -1,5 +1,13 @@
 # DanCing Web 💃🕸 (DCW)
 
+This `README` shows:
+
+- how to run the repo's example,
+- an overview of the example to understand how to use the framework, and
+- options for using the framework in your project.
+
+For information on the development of the framework visit the repo's [GitHub Page](https://danbugs.github.io/dancing_web).
+
 ## Running the example
 
 - Prerequisites:
@@ -16,11 +24,13 @@
 To view it, navigate to `http://localhost:8000/` on a browser.
 
 > <a name="footnote1"><sup>1</sup></a> The root level `Makefile` was designed for POSIX-compliant systems. To run it on Windows, you might have to do:
->> ```
->> bash
->> emmake make
->> exit
->> ```
+>
+> ```
+> bash
+> emmake make
+> exit
+> ```
+
 > Note: If you get that "Windows Subsystem For Linux has no Installed Distributions" when running the `bash` command, see [this](https://stackoverflow.com/questions/42438587/bash-is-not-recognized-as-an-internal-or-external-command) for ways you can run bash from Windows (I'm using WSL) or follow the steps displayed in your terminal.
 
 > <a name="footnote2"><sup>2</sup></a> I've experienced issues compiling the example code in WSL — I'll be investigating this in the future.
@@ -36,6 +46,7 @@ HTML(
 <div>
   <h1 class="red">${hello_world()}$</h1>
   <p>1 + 142856 = ${add_two_numbers(1, 142856)}$</p>
+  <button onclick="$E{print_hello()}$">Click me to print hello to the console from C</button>
 </div>
 <style>
   .red {
@@ -45,14 +56,17 @@ HTML(
 );
 ```
 
->Note: To get code auto-formatting working for .cml files on VSCode, open `settings.json` and add the following at the end of it:
->> ```
->> "files.associations": {
->>     "*.cml": "html"
->> },
->> ```
+> Note: To get code auto-formatting working for .cml files on VSCode, open `settings.json` and add the following at the end of it:
+>
+> ```
+> "files.associations": {
+>     "*.cml": "html"
+> },
+> ```
 
-You can call C functions within the `${` and `}$` markers. These functions will be executed and the result will display in the UI.
+- You can call C functions within the `${` and `}$` markers (called renderable markers) or within the `$E` and `}$` markers (called executable markers).
+  - Renderable markers are for C functions that return content that is meant to be rendered, and
+  - Executable markers are for C functions that are meant to be called but don't necessarily for render HTML (e.g., functions within a button's `onclick`).
 
 That said, within C, you can use this `hello_world.cml` like so:
 
@@ -60,14 +74,17 @@ File `frontend/hello_world.c`:
 
 ```
 // ...
-html_t html =
-    #include "frontend/hello_world.cml"
+html_t main =
+#include "frontend/hello_world.cml"
+    ;
 // ...
 ```
 
 - Things to note:
   - `#include "error.cml"` must be on a newline, and
-  - the `#include "error.cml"` statement does not have a terminating semi-colon (i.e., ";").
+  - the `;` must either not be included (granted that the `.cml` file has an ending `:`), or be included on a newline in reference to the `#include`<sup>[3](#footnote3)</sup>.
+
+> <a name="footnote3"><sup>3</sup></a> I usually do have a semi-colon on a new line because it helps w/ formatting.
 
 Otherwise, you can write HTML directly in your C file with:
 
@@ -76,6 +93,7 @@ html_t html = HTML(
 <div>
   <h1 class="red">${hello_world()}$</h1>
   <p>1 + 142856 = ${add_two_numbers(1, 142856)}$</p>
+  <button onclick="$E{print_hello()}$">Click me to print hello to the console from C</button>
 </div>
 <style>
   .red {
@@ -89,7 +107,7 @@ After writting your HTML, you can render it by calling the `display_html` functi
 
 ```
 // ...
-display_html(html);
+display_html(main);
 // ...
 ```
 
@@ -116,8 +134,11 @@ html_t add_two_numbers(int a, int b) // functions that return content to be rend
 EMSCRIPTEN_KEEPALIVE
 html_t hello_world()
 {
-    return "Hello, World!"; // or see the actual hello_world.c file for a more idiomatic way
+    html_t tmp = malloc(128 * sizeof(char));
+    sprintf(tmp, "%s", "Hello, World!");
+    return tmp;
 }
+
 
 int main()
 {
@@ -129,6 +150,18 @@ int main()
 ```
 
 > Note: Look at the comments in the example above for deeper understanding of the underlying logic.
+
+> For the record, a function like:
+>
+> ```
+> EMSCRIPTEN_KEEPALIVE
+> html_t hello_world()
+> {
+>     return "Hello, World!";
+> }
+> ```
+>
+> ... would also work. Thing is, it is not the best because the framework will try to free a pointer that wasn't malloc-ed. While this doesn't cause an error, I wouldn't call it a best practice.
 
 After this, just create a basic root `index.html` file to call our JavaScript:
 

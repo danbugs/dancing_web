@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['parse_5fhtml_6',['parse_html',['../dcw_8c.html#abaab77f91b172e7b7b2516e80e53165e',1,'dcw.c']]]
+  ['html_6',['HTML',['../dcw_8h.html#adb7919934cdf0c9f8d1a017e77cd1b47',1,'dcw.h']]],
+  ['html_5ft_7',['html_t',['../dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2',1,'dcw.h']]]
 ];

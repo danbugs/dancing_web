@@ -1,10 +1,11 @@
 <map id="src/dcw.c" name="src/dcw.c">
-<area shape="rect" id="node1" title=" " alt="" coords="281,5,362,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,72,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="97,80,167,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="191,80,262,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="286,80,357,107"/>
-<area shape="rect" id="node6" title=" " alt="" coords="381,80,488,107"/>
-<area shape="rect" id="node7" href="$dcw_8h.html" title=" " alt="" coords="512,80,571,107"/>
-<area shape="rect" id="node8" title=" " alt="" coords="595,80,675,107"/>
+<area shape="rect" id="node1" title=" " alt="" coords="402,5,483,32"/>
+<area shape="rect" id="node2" href="$dcw_8h.html" title=" " alt="" coords="5,80,64,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="88,80,205,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="229,80,336,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="361,80,431,107"/>
+<area shape="rect" id="node6" title=" " alt="" coords="456,80,523,107"/>
+<area shape="rect" id="node7" title=" " alt="" coords="547,80,618,107"/>
+<area shape="rect" id="node8" title=" " alt="" coords="642,80,713,107"/>
+<area shape="rect" id="node9" title=" " alt="" coords="737,80,817,107"/>
 </map>

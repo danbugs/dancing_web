@@ -1,3 +1,4 @@
+#pragma once
 /** \file 
     Useful macros intended to be used by the end-user.
 */
@@ -23,6 +24,7 @@
     Output:
     "hello_world: Hello, World!"
 */
-#define dbg(to_print, formatter) { \
-    printf(#to_print ": " #formatter "\n", to_print); \
-}
+#define dbg(to_print, formatter)                          \
+    {                                                     \
+        printf(#to_print ": " #formatter "\n", to_print); \
+    }
