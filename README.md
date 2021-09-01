@@ -23,9 +23,6 @@ Now, let's create our first HTML-equivalent "C Markdown Language" file (`.cml`) 
 HTML(
 <div>
   <h1 class="red">${hello_world()}$</h1>
-  <!-- 
-    note: the ${...}$ markers indicate we are calling C code!
-  -->
 </div>
 <style>
   .red {
@@ -34,6 +31,10 @@ HTML(
 </style>
 );
 ```
+
+You can call C functions within the `${` and `}$` markers (called renderable markers) or within the `$E` and `}$` markers (called executable markers).
+  - Renderable markers are for C functions that return content that is meant to be rendered, and
+  - Executable markers are for C functions that are meant to be called but don't necessarily render HTML (e.g., functions within a button's `onclick`).
 
 Next, in our `main.c`, replace its' contents with:
 
@@ -93,7 +94,7 @@ Now, let's build the project with: `tapm build`. This will use the `Makefile` to
 
 To test the project, run: `tapm run`. Navigating to `http://127.0.0.1:4000` in your browser, you should see:
 
-![getting-started-1](https://i.imgur.com/JwfCeXA.png)
+![getting-started-1](https://i.imgur.com/zGWqSow.png)
 
 FOr a more complex example, view the project in the `example/` folder of the repo!
 
@@ -133,10 +134,6 @@ html_t html = HTML(
 The root level `Makefile` was designed for POSIX-compliant systems — `tapm build` will not work on Windows outside of WSL.
 
 ### Binding a C function to a DOM event
-
-- You can call C functions within the `${` and `}$` markers (called renderable markers) or within the `$E` and `}$` markers (called executable markers).
-  - Renderable markers are for C functions that return content that is meant to be rendered, and
-  - Executable markers are for C functions that are meant to be called but don't necessarily for render HTML (e.g., functions within a button's `onclick`).
 
 ![binding-a-c-function-to-a-dom-event](https://camo.githubusercontent.com/339f5dbb4a8a9945034f5b1ba5efc7e5e2780a5353361c2fbea52b5ae47c7c4b/68747470733a2f2f692e696d6775722e636f6d2f6c766e6f646e442e676966)
 
