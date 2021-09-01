@@ -70,54 +70,104 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">dcw.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="dcw_8h_source.html">dcw.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="dcw__internal_8h_source.html">dcw_internal.h</a>&quot;</code><br />
+<code>#include &lt;emscripten.h&gt;</code><br />
+<code>#include &lt;regex.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
-<code>#include &lt;regex.h&gt;</code><br />
-<code>#include &lt;emscripten.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="dcw_8h_source.html">dcw.h</a>&quot;</code><br />
 <code>#include &quot;error.cml&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for dcw.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="dcw_8c__incl.png" border="0" usemap="#src_2dcw_8c" alt=""/></div>
 <map name="src_2dcw_8c" id="src_2dcw_8c">
-<area shape="rect" title=" " alt="" coords="281,5,362,32"/>
-<area shape="rect" title=" " alt="" coords="5,80,72,107"/>
-<area shape="rect" title=" " alt="" coords="97,80,167,107"/>
-<area shape="rect" title=" " alt="" coords="191,80,262,107"/>
-<area shape="rect" title=" " alt="" coords="286,80,357,107"/>
-<area shape="rect" title=" " alt="" coords="381,80,488,107"/>
-<area shape="rect" href="dcw_8h.html" title=" " alt="" coords="512,80,571,107"/>
-<area shape="rect" title=" " alt="" coords="595,80,675,107"/>
+<area shape="rect" title=" " alt="" coords="339,5,421,32"/>
+<area shape="rect" href="dcw_8h.html" title=" " alt="" coords="7,155,65,181"/>
+<area shape="rect" href="dcw__internal_8h.html" title=" " alt="" coords="25,80,143,107"/>
+<area shape="rect" title=" " alt="" coords="167,80,273,107"/>
+<area shape="rect" title=" " alt="" coords="298,80,369,107"/>
+<area shape="rect" title=" " alt="" coords="393,80,460,107"/>
+<area shape="rect" title=" " alt="" coords="485,80,555,107"/>
+<area shape="rect" title=" " alt="" coords="579,80,650,107"/>
+<area shape="rect" title=" " alt="" coords="675,80,755,107"/>
 </map>
 </div>
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ad7bacf2541029a8abefd4b8fd5e47884"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#ad7bacf2541029a8abefd4b8fd5e47884">dbg</a>(to_print,  formatter)</td></tr>
+<tr class="separator:ad7bacf2541029a8abefd4b8fd5e47884"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a8bad87084459d4b6a23cf22a7d706d31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#a8bad87084459d4b6a23cf22a7d706d31">displayInner</a> (<a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> html)</td></tr>
 <tr class="separator:a8bad87084459d4b6a23cf22a7d706d31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abaab77f91b172e7b7b2516e80e53165e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#abaab77f91b172e7b7b2516e80e53165e">parse_html</a> (<a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> raw_html)</td></tr>
-<tr class="separator:abaab77f91b172e7b7b2516e80e53165e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a0dea02e443ecb82f1d06050c7efb0c"><td class="memItemLeft" align="right" valign="top">EMSCRIPTEN_KEEPALIVE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#a9a0dea02e443ecb82f1d06050c7efb0c">display</a> (<a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> raw_html)</td></tr>
-<tr class="separator:a9a0dea02e443ecb82f1d06050c7efb0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00cc4fe93ce43016d88e011fd28f646d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#a00cc4fe93ce43016d88e011fd28f646d">parse_html_wrapper</a> (<a class="el" href="structparse__html__args.html">parse_html_args</a> in)</td></tr>
+<tr class="separator:a00cc4fe93ce43016d88e011fd28f646d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af24112a36c0dc7f53feb9d064019e222"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#af24112a36c0dc7f53feb9d064019e222">parse_html_core</a> (<a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> raw_html, <a class="el" href="structmarker__t.html">marker_t</a> marker)</td></tr>
+<tr class="separator:af24112a36c0dc7f53feb9d064019e222"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a236b6784517212c4a78be8b8db9b145b"><td class="memItemLeft" align="right" valign="top">EMSCRIPTEN_KEEPALIVE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#a236b6784517212c4a78be8b8db9b145b">display_html</a> (<a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> raw_html)</td></tr>
+<tr class="separator:a236b6784517212c4a78be8b8db9b145b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a426faf00e00772908cbebc65fe487bd8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#a426faf00e00772908cbebc65fe487bd8">ERROR_HTML</a></td></tr>
+<tr class="separator:a426faf00e00772908cbebc65fe487bd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A framework to write HTML directly within C and have it call C functions. Users interact with it through the <code>display</code> function, and the <code>html_t</code> and <code>HTML</code> macros in <a class="el" href="dcw_8h.html">dcw.h</a>. </p>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a id="a9a0dea02e443ecb82f1d06050c7efb0c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9a0dea02e443ecb82f1d06050c7efb0c">&#9670;&nbsp;</a></span>display()</h2>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ad7bacf2541029a8abefd4b8fd5e47884"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7bacf2541029a8abefd4b8fd5e47884">&#9670;&nbsp;</a></span>dbg</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">EMSCRIPTEN_KEEPALIVE void display </td>
+          <td class="memname">#define dbg</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">to_print, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">formatter&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">    {                                                     \</div>
+<div class="line">        printf(#to_print <span class="stringliteral">&quot;: &quot;</span> #formatter <span class="stringliteral">&quot;\n&quot;</span>, to_print); \</div>
+<div class="line">    }</div>
+</div><!-- fragment --><p>A utility function for easy debug. It prints the variable name and its' value. Usage: char *hello_world = "Hello, World!"; dbg(hello_world, d);</p>
+<p>Output: "hello_world: Hello, World!" </p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a236b6784517212c4a78be8b8db9b145b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a236b6784517212c4a78be8b8db9b145b">&#9670;&nbsp;</a></span>display_html()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">EMSCRIPTEN_KEEPALIVE void display_html </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a>&#160;</td>
           <td class="paramname"><em>raw_html</em></td><td>)</td>
@@ -159,18 +209,28 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="abaab77f91b172e7b7b2516e80e53165e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abaab77f91b172e7b7b2516e80e53165e">&#9670;&nbsp;</a></span>parse_html()</h2>
+<a id="af24112a36c0dc7f53feb9d064019e222"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af24112a36c0dc7f53feb9d064019e222">&#9670;&nbsp;</a></span>parse_html_core()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> parse_html </td>
+          <td class="memname"><a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> parse_html_core </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a>&#160;</td>
-          <td class="paramname"><em>raw_html</em></td><td>)</td>
+          <td class="paramname"><em>raw_html</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="structmarker__t.html">marker_t</a>&#160;</td>
+          <td class="paramname"><em>marker</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -181,6 +241,49 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The HTML that is ready to be rendered. </dd></dl>
+
+</div>
+</div>
+<a id="a00cc4fe93ce43016d88e011fd28f646d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00cc4fe93ce43016d88e011fd28f646d">&#9670;&nbsp;</a></span>parse_html_wrapper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> parse_html_wrapper </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structparse__html__args.html">parse_html_args</a>&#160;</td>
+          <td class="paramname"><em>in</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A wrapper around <code>parse_html_core</code> to allow setting default argument values.</p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in</td><td>This should contain the some raw html and, maybe, the type of marker to look for. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The HTML that is ready to be rendered. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a426faf00e00772908cbebc65fe487bd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a426faf00e00772908cbebc65fe487bd8">&#9670;&nbsp;</a></span>ERROR_HTML</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> ERROR_HTML</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line"><span class="preprocessor"># 31 &quot;/mnt/c/Users/danil/source/repos/dancing_web/src/dcw.c&quot; 2</span></div>
+</div><!-- fragment --><p>The HTML that is displayed to the users then there is DCW encounters an error. </p>
 
 </div>
 </div>

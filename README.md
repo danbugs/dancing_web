@@ -67,6 +67,7 @@ html_t hello_world()
 // ^^^ this is the hello_world function 
 // we are calling from our .cml file
 
+
 int main()
 {
     html_t html =
@@ -150,6 +151,19 @@ html_t add_two_numbers(int a, int b)
     return tmp;
 }
 ```
+
+### Returning unmalloc-ed items
+
+For the record, a function like:
+
+```
+EMSCRIPTEN_KEEPALIVE
+html_t hello_world()
+{
+    return "Hello, World!";
+}
+```
+... would also work. Thing is, it is not the best because the framework will try to free a pointer that wasn't malloc-ed. While this doesn't cause an error, I wouldn't call it a best practice.
 
 ### Notes to Self
 

@@ -1,7 +1,12 @@
 HTML(
 <div>
   <h1 class="red">${hello_world()}$</h1>
+<<<<<<< HEAD
   <!-- <p>1 + 142856 = ${add_two_numbers(1, 142856)}$</p> -->
+=======
+  <p>1 + 142856 = ${add_two_numbers(1, 142856)}$</p>
+  <button onclick="$E{print_hello()}$">Click me to print hello to the console from C</button>
+>>>>>>> main
 </div>
 <style>
   .red {

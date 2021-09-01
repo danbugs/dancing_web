@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['html_12',['HTML',['../dcw_8h.html#adb7919934cdf0c9f8d1a017e77cd1b47',1,'dcw.h']]],
-  ['html_5ft_13',['html_t',['../dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2',1,'dcw.h']]]
+  ['dbg_26',['dbg',['../dcw_8c.html#ad7bacf2541029a8abefd4b8fd5e47884',1,'dcw.h']]]
 ];
