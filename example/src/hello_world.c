@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <emscripten.h>
-#include "dcw_latest/dcw.h"
+#include "../dependencies/dcw/dcw.h"
 
 extern void display_html(html_t raw_html);
 
@@ -25,7 +25,8 @@ html_t hello_world()
 int main()
 {
     html_t html =
-#include "frontend/hello_world.cml"
+#include "../frontend/hello_world.cml"
+    ;
 
-        display_html(html);
+    display_html(html);
 }

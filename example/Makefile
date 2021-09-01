@@ -1,7 +1,9 @@
 P=hello_world
-OBJECTS=hello_world.c
+OBJECTS=src/hello_world.c
 EMCC=emcc
-EMCC_CFLAGS=-s MAIN_MODULE=1 --pre-js pre.js --js-library dcw_latest/dcw.js
+EMCC_CFLAGS=-s MAIN_MODULE=1 --js-library dependencies/dcw/dcw.js
+BUILDDIR=build
+DEPENDENCIES=dependencies/dcw/dcw.o 
 
 $(P): $(OBJECTS)
-	$(EMCC) $(P).c $(EMCC_CFLAGS)
+	$(EMCC) $(EMCC_CFLAGS) $(DEPENDENCIES) src/hello_world.c -o $(BUILDDIR)/$(P).js

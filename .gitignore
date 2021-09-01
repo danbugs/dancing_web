@@ -1,4 +1,3 @@
-**/a.out.*
-**/dcw_latest
-releases
+**/build
+**/releases
 .vscode

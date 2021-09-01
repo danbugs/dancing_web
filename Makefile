@@ -5,13 +5,13 @@
 P=dcw
 OBJECTS=src/dcw.c src/dcw.js src/dcw.h
 EMCC=emcc
-EMCC_CFLAGS=-s SIDE_MODULE=2
+EMCC_CFLAGS=-s SIDE_MODULE=2 -c
+BUILDDIR=build
+DEPENDENCIES=
 
 $(P): $(OBJECTS)
-	rm -rf dcw_latest
-	rm -rf example/dcw_latest
-	mkdir -p dcw_latest
-	cp src/$(P).js dcw_latest/$(P).js
-	cp src/$(P).h dcw_latest/$(P).h
-	$(EMCC) $(EMCC_CFLAGS) src/$(P).c -o dcw_latest/$(P).wasm
-	cp -R dcw_latest example/dcw_latest
+	rm -rf $(BUILDDIR)
+	mkdir -p $(BUILDDIR)
+	cp src/$(P).js $(BUILDDIR)/$(P).js
+	cp src/$(P).h $(BUILDDIR)/$(P).h
+	$(EMCC) $(EMCC_CFLAGS) $(DEPENDENCIES) src/$(P).c -o $(BUILDDIR)/$(P).o

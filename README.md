@@ -1,41 +1,31 @@
 # DanCing Web 💃🕸 (DCW)
 
-## Running the example
+## Getting Started
 
-- Prerequisites:
+Dancing Web is now distributed with the [Tarantella Package Manager](https://github.com/danbugs/tarantella) — a tool I've made to simplify setup of projects like these! 
 
-  - Emscripten (to install, check [this](https://emscripten.org/docs/getting_started/downloads.html) out), and
-  - An HTTP Server (e.g., I'm using Python's `http.server` module).
+To install the Tarantella Package Manager, you need the Rust toolchain — for instructions on how to install it, see [this](https://www.rust-lang.org/tools/install). Once you're done with that, you can install Tarantella by running: `cargo install tarantella`.
 
-- Now, do the following:
-  - at the root of the project, run `emmake make`* to compile the side module,
-  - copy the dcw_latest folder from the root of the project to inside the example folder,
-  - run `emmake make` from inside the example folder to compile the main module, and
-  - run `python3 -m http.server` to start the application.
+To start-off, setup a new main module WASM project with: `tapm new my-first-project`. This will start a new C WASM project with:
+- a build folder, 
+- a dependencies folder,
+- an index.html,
+- a `Makefile`,
+- a releases folder, 
+- a src folder with some starting code in `main.c`, and a
+- `Tarantella.toml` file.
 
-To view it, navigate to `http://localhost:8000/` on a browser.
+Next, add the latest version of Dancing Web as a dependency with: `tapm add "danbugs/dancing_web"`. This will automatically download DCW to your dependencies folder, add it to your `Tarantella.toml` list of dependencies, and append `dependencies/dcw/dcw.o` to the `DEPENDENCIES` variable of your `Makefile` to facilitate compilation.
 
-> Note: I've experienced issues compiling the example code in WSL — I'll be investigating this in the future.
+Now, let's create our first HTML-equivalent "C Markdown Language" file (`.cml`) to be rendered from C! First, create a folder called `frontend/` and, inside it, create a `hello_world.cml` file with the following code:
 
-> *: The root level `Makefile` was designed for POSIX-compliant systems. To run it on Windows, you might have to do:
->> ```
->> bash
->> emmake make
->> exit
->> ```
-> - If you get that "'bash' is not recognized as an internal or external command", see [this](https://stackoverflow.com/questions/42438587/bash-is-not-recognized-as-an-internal-or-external-command) for ways you can run bash from Windows — I'm using WSL.
-
-## Overview of the example
-
-If you are using an IDE, to avoid C auto-formatting the HTML to something that doesn't work, you can create separate files for it. These files can have any extension but I've been using `.cml` (i.e., C Markup Language) — they look like this:
-
-File `frontend/hello_world.cml`:
-
-```
+```HTML
 HTML(
 <div>
   <h1 class="red">${hello_world()}$</h1>
-  <p>1 + 142856 = ${add_two_numbers(1, 142856)}$</p>
+  <!-- 
+    note: the ${...}$ markers indicate we are calling C code!
+  -->
 </div>
 <style>
   .red {
@@ -45,37 +35,87 @@ HTML(
 );
 ```
 
-> - Note: To get code auto-formatting working for .cml files on VSCode, open `settings.json` and add the following at the end of it:
->   > ```
->   > "files.associations": {
->   >     "*.cml": "html"
->   > },
->   > ```
+Next, in our `main.c`, replace its' contents with:
 
-You can call C functions within the `${` and `}$` markers. These functions will be executed and the result will display in the UI.
+```C
+#include <stdio.h>
+#include <stdlib.h>
+#include <emscripten.h>
+#include "../dependencies/dcw/dcw.h"
 
-That said, within C, you can use this `hello_world.cml` like so:
+extern void display_html(html_t raw_html);
+// ^^^ rendering function from DCW that is 
+// external to our main module
 
-File `public/hello_world.c`:
+                     //    this is compulsory for functions
+EMSCRIPTEN_KEEPALIVE // <- you intend to call from HTML
+html_t hello_world()
+{
+    // ^^^ functions that return content to be rendered 
+    // must return the html_t or char* types
+
+    html_t tmp = malloc(128 * sizeof(char));
+    // ^^^ you don't need to free this malloc,
+    // the framework will do it for you.
+
+    sprintf(tmp, "%s", "Hello, World!");
+    // ^^^ this works because html_t expands 
+    // to char*
+
+    return tmp;
+}
+// ^^^ this is the hello_world function 
+// we are calling from our .cml file
+
+int main()
+{
+    html_t html =
+#include "../frontend/hello_world.cml"
+    ;
+    // ^^^ this brings the .cml component into scope!
+    // things to note:
+    // - the #include statement must be in a line of its' 
+    // own, and
+    // - the ';' is optional but, if present, must also be 
+    // on a line of its' own 
+    // (usually, I like to include the ';' because it 
+    // helps with formatting)
+
+    display_html(html);
+    // ^^^ this will render our html.
+}
+```
+
+To finish off, in your `Makefile`, append `--js-library dependencies/dcw/dcw.js` to your `EMCC_FLAGS` variable. It should look like this: `EMCC_CFLAGS=-s MAIN_MODULE=1 --js-library dependencies/dcw/dcw.js`.
+
+Now, let's build the project with: `tapm build`. This will use the `Makefile` to compile the project to the `build/` folder.
+
+To test the project, run: `tapm run`. Navigating to `http://127.0.0.1:4000` in your browser, you should see:
+
+![getting-started-1](https://i.imgur.com/JwfCeXA.png)
+
+## Appendix
+
+### Why use `.cml` files?
+
+If you are using an IDE, to avoid C auto-formatting the HTML to something that doesn't work, you can create separate files for it. These files can have any extension but I've been using `.cml` (i.e., C Markup Language).
+
+In addition, to get code auto-formatting working for `.cml` files on VSCode, open `settings.json` and add the following at the end of it:
 
 ```
-// ...
-html_t html =
-    #include "frontend/hello_world.cml"
-// ...
+"files.associations": {
+    "*.cml": "html"
+},
 ```
 
-- Things to note:
-  - `#include "error.cml"` must be on a newline, and
-  - the `#include "error.cml"` statement does not have a terminating semi-colon (i.e., ";").
+### An alternative to `.cml` files
 
-Otherwise, you can write HTML directly in your C file with:
+You can write HTML directly within C, like this:
 
 ```
 html_t html = HTML(
 <div>
   <h1 class="red">${hello_world()}$</h1>
-  <p>1 + 142856 = ${add_two_numbers(1, 142856)}$</p>
 </div>
 <style>
   .red {
@@ -85,135 +125,32 @@ html_t html = HTML(
 );
 ```
 
-After writting your HTML, you can render it by calling the `display_html` function:
+### Building from source
+
+The root level `Makefile` was designed for POSIX-compliant systems — `tapm build` will not work on Windows outside of WSL.
+
+### Binding a C function to a DOM event
+
+- You can call C functions within the `${` and `}$` markers (called renderable markers) or within the `$E` and `}$` markers (called executable markers).
+  - Renderable markers are for C functions that return content that is meant to be rendered, and
+  - Executable markers are for C functions that are meant to be called but don't necessarily for render HTML (e.g., functions within a button's `onclick`).
+
+![binding-a-c-function-to-a-dom-event](https://camo.githubusercontent.com/339f5dbb4a8a9945034f5b1ba5efc7e5e2780a5353361c2fbea52b5ae47c7c4b/68747470733a2f2f692e696d6775722e636f6d2f6c766e6f646e442e676966)
+
+### Returning other types as `html_t`
 
 ```
-// ...
-display_html(html);
-// ...
-```
-
-Overall, a basic example looks like this:
-
-```
-#include <stdio.h>
-#include <stdlib.h>
-#include <emscripten.h>
-#include "dcw_latest/dcw.h"
-
-extern void display_html(html_t raw_html); // this is necessary for the compiler to know this function will be available at runtime
-
-EMSCRIPTEN_KEEPALIVE // this is compulsory for functions you intend to call from HTML
-html_t add_two_numbers(int a, int b) // functions that return content to be rendered must return the html_t or char* types
+EMSCRIPTEN_KEEPALIVE
+html_t add_two_numbers(int a, int b)
 {
-  // this example illustrates how you can get a another type (i.e., int) to be returned as html_t
-    char *tmp = malloc(128 * sizeof(int)); // don't worry about free-ing this malloc, the framework will free it after rendering
+    char *tmp = malloc(128 * sizeof(int));
     int result = a + b;
-    sprintf(tmp, "%d", result); // this works because html_t expands to char*
+    sprintf(tmp, "%d", result);
+    html_t expands to char*
     return tmp;
 }
-
-EMSCRIPTEN_KEEPALIVE
-html_t hello_world()
-{
-    return "Hello, World!";
-}
-
-int main()
-{
-    html_t html =
-#include "frontend/hello_world.cml"
-
-        display_html(html);
-}
 ```
 
-> Note: Look at the comments in the example above for deeper understanding of the underlying logic.
+### Notes to Self
 
-After this, just create a basic root `index.html` file to call our JavaScript:
-
-```
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="icon" href="./public/favicon.ico" />
-    <title>DanCing Web Example</title>
-  </head>
-  <body>
-    <script async type="text/javascript" src="./a.out.js"></script>
-  </body>
-</html>
-```
-
-> Note: I'm hoping to automate a lot of this in the future w/ a CLI tool.
-
-## How to use DanCing Web in your project?
-
-### Using gitsubmodules
-
-- To get started:
-
-  - if your project isn't already a `git` repository, run: `git init`, and
-  - next, run: `git submodule add https://github.com/danbugs/dancing_web.git`.
-
-- After this:
-
-  - At the top of `<your_file>.c`, add:
-
-    File `<your_file>.c`
-
-    ```
-    #include "dancing_web/src/dcw.h"
-
-    extern void display_html(html_t raw_html);
-    ```
-
-  - to compile, run: `emcc <your_file>.c dancing_web/src/dcw.c --js-library dancing_web/src/dcw.js`, and
-  - To finish off, create the basic root `index.html` file I mentioned in the "Overview of the example" section.
-  - Now, to run, execute: `python3 -m http.server`.
-
-- To update the dependency, run: `git submodule update --remote --merge`.
-
-### Using dynamic linking
-
-- To start off, download the latest release of the repository:
-  ![dynamicLinkingDownload](https://i.imgur.com/L8LfX17.gif)
-
-- Unzip the file in the root of your project and delete the `.zip` file.
-
-- Next, to dynamically link your main module to DCW, create a file called `pre.js` like so:
-
-File `pre.js`:
-
-```
-Module['dynamicLibraries'] = ['dcw_latest/dcw.wasm'];```
-
-- Next, create a `Makefile` like so: to facilitate compilation:
-
-File `Makefile`:
-
-```
-P=<your_file>
-OBJECTS=<your_file>.c
-EMCC=emcc
-EMCC_CFLAGS=-s MAIN_MODULE=1 --pre-js pre.js --js-library dcw_latest/dcw.js
-
-$(P): $(OBJECTS)
-	$(EMCC) $(P).c $(EMCC_CFLAGS)
-```
-
-- At the top of `<your_file>.c`, add:
-
-File `<your_file>.c`
-
-```
-#include "dcw_latest/dcw.h"
-
-extern void display_html(html_t raw_html);
-```
-
-- To finish off, create the basic root `index.html` file I mentioned in the usage section.
-
-- To compile, execute: `emmake make`.
-- To run, execute: `python3 -m http.server`.
+To check for any problems (i.e., mem leaks and whatnot) in the code at runtime, compile like so: `emcc hello_world.c ../../src/dcw.c --js-library ../../src/dcw.js -fsanitize=address -s ALLOW_MEMORY_GROWTH -s INITIAL_MEMORY=285212672 -gsource-map --source-map-base http://127.0.0.1:4000`. After that, run with: `tapm run`.
