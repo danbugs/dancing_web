@@ -1,9 +1,9 @@
 #include <emscripten.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-#include "dcw_latest/dcw.h"
-// #include "../src/dcw.h" -> for when I'm checking for mem leaks
+#include <emscripten.h>
+#include "../dependencies/dcw/dcw.h"
+// #include "../../src/dcw.h" -> for when I'm checking for mem leaks
 
 extern void display_html(html_t raw_html);
 
@@ -33,7 +33,7 @@ void print_hello()
 int main()
 {
     html_t main =
-#include "frontend/hello_world.cml"
+#include "../frontend/hello_world.cml"
         ;
     display_html(main);
 }
