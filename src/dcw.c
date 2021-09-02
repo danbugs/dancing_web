@@ -36,6 +36,8 @@ html_t ERROR_HTML =
 */
 extern void displayInner(html_t html);
 
+extern void removeInner(html_t html);
+
 /** A wrapper around \c parse_html_core to allow setting default argument
    values. \param in This should contain the some raw html and, maybe, the type
    of marker to look for. \return The HTML that is ready to be rendered.
@@ -144,4 +146,11 @@ void display_html(html_t raw_html)
 {
     html_t rendered_html = parse_html(raw_html);
     displayInner(rendered_html);
+}
+
+EMSCRIPTEN_KEEPALIVE
+void remove_html(html_t raw_html)
+{
+    html_t rendered_html = parse_html(raw_html);
+    removeInner(rendered_html);
 }

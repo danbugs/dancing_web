@@ -1,39 +1,35 @@
 #include <emscripten.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <emscripten.h>
 #include "../dependencies/dcw/dcw.h"
 // #include "../../src/dcw.h" -> for when I'm checking for mem leaks
 
+extern void remove_html(html_t raw_html);
 extern void display_html(html_t raw_html);
 
+html_t main_h =
+#include "../frontend/hello_world.cml"
+    ;
+
+int counter = 0;
+
 EMSCRIPTEN_KEEPALIVE
-html_t add_two_numbers(int a, int b)
+void increase_counter()
 {
-    html_t tmp = malloc(128 * sizeof(char));
-    int result = a + b;
-    sprintf(tmp, "%d", result);
-    return tmp;
+    remove_html(main_h);
+    counter++;
+    display_html(main_h);
 }
 
 EMSCRIPTEN_KEEPALIVE
-html_t hello_world()
+html_t get_counter()
 {
     html_t tmp = malloc(128 * sizeof(char));
-    sprintf(tmp, "%s", "Hello, World!");
+    sprintf(tmp, "%d\n", counter);
     return tmp;
-}
-
-EMSCRIPTEN_KEEPALIVE
-void print_hello()
-{
-    printf("hello\n");
 }
 
 int main()
 {
-    html_t main =
-#include "../frontend/hello_world.cml"
-        ;
-    display_html(main);
+    display_html(main_h);
 }

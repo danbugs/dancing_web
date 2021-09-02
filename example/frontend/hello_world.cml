@@ -1,12 +1,6 @@
 HTML(
-<div>
-  <h1 class="red">${hello_world()}$</h1>
-  <p>1 + 142856 = ${add_two_numbers(1, 142856)}$</p>
-  <button onclick="$E{print_hello()}$">Click me to print hello to the console from C</button>
-</div>
-<style>
-  .red {
-    color: red;
-  }
-</style>
+   <div>
+       <p>${get_counter()}$</p>
+       <button onclick="$E{increase_counter()}$">Increase Counter</button>
+   </div> 
 );

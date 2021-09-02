@@ -164,6 +164,20 @@ html_t hello_world()
 ```
 ... would also work. Thing is, it is not the best because the framework will try to free a pointer that wasn't malloc-ed. While this doesn't cause an error, I wouldn't call it a best practice.
 
+### Are you updating HTML you've already rendered?
+
+If that's the case, you must remove the old html before you update your state. For example, when updating the counter in `example/src/hello_world.c`, I do:
+
+```C
+EMSCRIPTEN_KEEPALIVE
+void increase_counter()
+{
+    remove_html(main_h);
+    counter++;
+    display_html(main_h);
+}
+```
+
 ### Notes to Self
 
 To check for any problems (i.e., mem leaks and whatnot) in the code at runtime, compile like so: `emcc hello_world.c ../../src/dcw.c --js-library ../../src/dcw.js -fsanitize=address -s ALLOW_MEMORY_GROWTH -s INITIAL_MEMORY=285212672 -gsource-map --source-map-base http://127.0.0.1:4000`. After that, run with: `tapm run`.
