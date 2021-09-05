@@ -96,7 +96,7 @@ To test the project, run: `tapm run`. Navigating to `http://127.0.0.1:4000` in y
 
 ![getting-started-1](https://i.imgur.com/zGWqSow.png)
 
-FOr a more complex example, view the project in the `example/` folder of the repo!
+For a more complex example, view the project in the `example/` folder of the repo!
 
 ## Appendix
 
