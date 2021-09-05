@@ -111,12 +111,16 @@ Macros</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a8bad87084459d4b6a23cf22a7d706d31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#a8bad87084459d4b6a23cf22a7d706d31">displayInner</a> (<a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> html)</td></tr>
 <tr class="separator:a8bad87084459d4b6a23cf22a7d706d31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a40df184b0d6261461f3f9d4ce575cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#a6a40df184b0d6261461f3f9d4ce575cb">removeInner</a> (<a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> html)</td></tr>
+<tr class="separator:a6a40df184b0d6261461f3f9d4ce575cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00cc4fe93ce43016d88e011fd28f646d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#a00cc4fe93ce43016d88e011fd28f646d">parse_html_wrapper</a> (<a class="el" href="structparse__html__args.html">parse_html_args</a> in)</td></tr>
 <tr class="separator:a00cc4fe93ce43016d88e011fd28f646d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af24112a36c0dc7f53feb9d064019e222"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#af24112a36c0dc7f53feb9d064019e222">parse_html_core</a> (<a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> raw_html, <a class="el" href="structmarker__t.html">marker_t</a> marker)</td></tr>
 <tr class="separator:af24112a36c0dc7f53feb9d064019e222"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a236b6784517212c4a78be8b8db9b145b"><td class="memItemLeft" align="right" valign="top">EMSCRIPTEN_KEEPALIVE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#a236b6784517212c4a78be8b8db9b145b">display_html</a> (<a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> raw_html)</td></tr>
 <tr class="separator:a236b6784517212c4a78be8b8db9b145b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad0eda700955aeee9d359cc2cbbbd7b2"><td class="memItemLeft" align="right" valign="top">EMSCRIPTEN_KEEPALIVE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#aad0eda700955aeee9d359cc2cbbbd7b2">remove_html</a> (<a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> raw_html)</td></tr>
+<tr class="separator:aad0eda700955aeee9d359cc2cbbbd7b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -266,6 +270,55 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The HTML that is ready to be rendered. </dd></dl>
+
+</div>
+</div>
+<a id="aad0eda700955aeee9d359cc2cbbbd7b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad0eda700955aeee9d359cc2cbbbd7b2">&#9670;&nbsp;</a></span>remove_html()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">EMSCRIPTEN_KEEPALIVE void remove_html </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a>&#160;</td>
+          <td class="paramname"><em>raw_html</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A wrapper for <code>parse_html</code>, and the JS funtion <code>removeInner</code> .</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">raw_html</td><td>The HTML you want to remove. This should be of type html_t or char*. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6a40df184b0d6261461f3f9d4ce575cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a40df184b0d6261461f3f9d4ce575cb">&#9670;&nbsp;</a></span>removeInner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void removeInner </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a>&#160;</td>
+          <td class="paramname"><em>html</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A JS funtion that removes HTML from the DOM. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">html</td><td>The HTML you want to remove. This should be of type html_t or char*. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

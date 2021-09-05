@@ -36,6 +36,9 @@ html_t ERROR_HTML =
 */
 extern void displayInner(html_t html);
 
+/** A JS funtion that removes HTML from the DOM.
+    \param html The HTML you want to remove. This should be of type html_t or char*.
+*/
 extern void removeInner(html_t html);
 
 /** A wrapper around \c parse_html_core to allow setting default argument
@@ -148,6 +151,11 @@ void display_html(html_t raw_html)
     displayInner(rendered_html);
 }
 
+/** A wrapper for \c parse_html, and the JS funtion \c removeInner .
+
+    \param raw_html The HTML you want to remove. This should be of type html_t
+   or char*.
+*/
 EMSCRIPTEN_KEEPALIVE
 void remove_html(html_t raw_html)
 {
