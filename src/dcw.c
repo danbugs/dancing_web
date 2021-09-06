@@ -1,7 +1,7 @@
 /** \file
     A framework to write HTML directly within C and have it call C functions.
-    Users interact with it through the \c display function, and the \c html_t
-   and \c HTML macros in dcw.h.
+    Users interact with it through the \c display_html and \c remove_html functions, 
+    and the \c html_t and \c HTML macros in dcw.h.
 */
 
 /*
