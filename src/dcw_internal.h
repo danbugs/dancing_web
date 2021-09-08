@@ -1,7 +1,8 @@
 /** \file 
     Macros, types, and function signatures that are not intended to be used by the end-user.
 */
-
+#ifndef DCW_INTERNAL_H
+#define DCW_INTERNAL_H
 #include "dcw.h"
 
 /** The two types of marker currently supported by DCW.
@@ -48,3 +49,4 @@ html_t parse_html_wrapper(parse_html_args in);
 html_t parse_html_core(html_t raw_html, marker_t marker);
 
 void display_html(html_t raw_html);
+#endif

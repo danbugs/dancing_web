@@ -1,4 +1,3 @@
-#pragma once
 /** \file 
     Useful macros intended to be used by the end-user.
 */
@@ -7,6 +6,9 @@
  * Copyright 2021 Danilo Chiarlone
  * LICENSE: GNU AFFERO GENERAL PUBLIC LICENSE
 */
+
+#ifndef DCW_H
+#define DCW_H
 
 /** A macro that expands to the \c char* type — created to distinguish between normal strings and those that are meant to be rendered to the DOM.
 */
@@ -28,3 +30,5 @@
     {                                                     \
         printf(#to_print ": " #formatter "\n", to_print); \
     }
+
+#endif
