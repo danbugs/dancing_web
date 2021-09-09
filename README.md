@@ -55,11 +55,11 @@ html_t hello_world()
     // ^^^ functions that return content to be rendered 
     // must return the html_t or char* types
 
-    html_t tmp = malloc(128 * sizeof(char));
+    html_t tmp;
     // ^^^ you don't need to free this malloc,
     // the framework will do it for you.
 
-    sprintf(tmp, "%s", "Hello, World!");
+    asprintf(&tmp, "%s", "Hello, World!");
     // ^^^ this works because html_t expands 
     // to char*
 
@@ -96,7 +96,7 @@ To test the project, run: `tapm run`. Navigating to `http://127.0.0.1:4000` in y
 
 ![getting-started-1](https://i.imgur.com/zGWqSow.png)
 
-For a more complex example, view the project in the `example/` folder of the repo!
+For more complex examples, view the project in the `examples/` folder of the repo!
 
 ## Appendix
 
@@ -129,13 +129,20 @@ html_t html = HTML(
 );
 ```
 
-### Building from source
+...or:
 
-The root level `Makefile` was designed for POSIX-compliant systems — `tapm build` will not work on Windows outside of WSL.
-
-### Binding a C function to a DOM event
-
-![binding-a-c-function-to-a-dom-event](https://camo.githubusercontent.com/339f5dbb4a8a9945034f5b1ba5efc7e5e2780a5353361c2fbea52b5ae47c7c4b/68747470733a2f2f692e696d6775722e636f6d2f6c766e6f646e442e676966)
+```
+html_t html = HTMLIFY(" \
+<div> \
+  <h1 class='red'>${hello_world()}$</h1> \
+</div> \
+<style> \
+  .red { \
+    color: red; \
+  } \
+</style> \
+");
+```
 
 ### Returning other types as `html_t`
 
@@ -143,10 +150,9 @@ The root level `Makefile` was designed for POSIX-compliant systems — `tapm bui
 EMSCRIPTEN_KEEPALIVE
 html_t add_two_numbers(int a, int b)
 {
-    char *tmp = malloc(128 * sizeof(int));
+    char *tmp;
     int result = a + b;
-    sprintf(tmp, "%d", result);
-    html_t expands to char*
+    asprintf(&tmp, "%d", result);
     return tmp;
 }
 ```
@@ -163,20 +169,6 @@ html_t hello_world()
 }
 ```
 ... would also work. Thing is, it is not the best because the framework will try to free a pointer that wasn't malloc-ed. While this doesn't cause an error, I wouldn't call it a best practice.
-
-### Are you updating HTML you've already rendered?
-
-If that's the case, you must remove the old html before you update your state. For example, when updating the counter in `example/src/hello_world.c`, I do:
-
-```C
-EMSCRIPTEN_KEEPALIVE
-void increase_counter()
-{
-    remove_html(main_h);
-    counter++;
-    display_html(main_h);
-}
-```
 
 ### Notes to Self
 
