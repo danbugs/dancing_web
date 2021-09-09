@@ -1,6 +1,6 @@
 [package]
 name = "dcw"
-version = "0.4.0"  # format: major.minor.patch
+version = "0.5.0"  # format: major.minor.patch
 module_type = "side_module" # main_module || side_module
 build_dir = "build" # when modifying this field, change BUILD_DIR in the Makefile too
 releases_repo = "https://github.com/danbugs/dancing_web" # format: https://github.com/<owner>/<repo_name>
