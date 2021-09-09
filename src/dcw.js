@@ -31,7 +31,7 @@ mergeInto(LibraryManager.library, {
       element.removeChild(element.lastChild);
     }
   },
-  insertInner: function (html, id) {
+  insertAtIdInner: function (html, id) {
     let element = document.querySelector(`#${UTF8ToString(id)}`);
     if (!element) {
       element = document.createElement("div");

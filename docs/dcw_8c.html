@@ -70,7 +70,6 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
@@ -84,13 +83,14 @@ $(function() {
 <code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &quot;error.cml&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for dcw.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="dcw_8c__incl.png" border="0" usemap="#src_2dcw_8c" alt=""/></div>
 <map name="src_2dcw_8c" id="src_2dcw_8c">
-<area shape="rect" title=" " alt="" coords="339,5,421,32"/>
+<area shape="rect" title=" " alt="" coords="386,5,467,32"/>
 <area shape="rect" href="dcw_8h.html" title=" " alt="" coords="7,155,65,181"/>
 <area shape="rect" href="dcw__internal_8h.html" title=" " alt="" coords="25,80,143,107"/>
 <area shape="rect" title=" " alt="" coords="167,80,273,107"/>
@@ -98,29 +98,41 @@ Include dependency graph for dcw.c:</div>
 <area shape="rect" title=" " alt="" coords="393,80,460,107"/>
 <area shape="rect" title=" " alt="" coords="485,80,555,107"/>
 <area shape="rect" title=" " alt="" coords="579,80,650,107"/>
-<area shape="rect" title=" " alt="" coords="675,80,755,107"/>
+<area shape="rect" title=" " alt="" coords="675,80,757,107"/>
+<area shape="rect" title=" " alt="" coords="781,80,861,107"/>
 </map>
 </div>
 </div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:ad7bacf2541029a8abefd4b8fd5e47884"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#ad7bacf2541029a8abefd4b8fd5e47884">dbg</a>(to_print,  formatter)</td></tr>
-<tr class="separator:ad7bacf2541029a8abefd4b8fd5e47884"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a8bad87084459d4b6a23cf22a7d706d31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#a8bad87084459d4b6a23cf22a7d706d31">displayInner</a> (<a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> html)</td></tr>
 <tr class="separator:a8bad87084459d4b6a23cf22a7d706d31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a40df184b0d6261461f3f9d4ce575cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#a6a40df184b0d6261461f3f9d4ce575cb">removeInner</a> (<a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> html)</td></tr>
-<tr class="separator:a6a40df184b0d6261461f3f9d4ce575cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeaca657d6c6fc56126b0cc0521538b0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#aeaca657d6c6fc56126b0cc0521538b0f">removeStaticInner</a> (<a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> html)</td></tr>
+<tr class="separator:aeaca657d6c6fc56126b0cc0521538b0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49968519ae90ff594810c5e5dbd3312d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#a49968519ae90ff594810c5e5dbd3312d">removeWithClassInner</a> (char *class_name)</td></tr>
+<tr class="separator:a49968519ae90ff594810c5e5dbd3312d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71a18581ec29de8d483495a7055281c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#a71a18581ec29de8d483495a7055281c6">removeChildrenOfIdInner</a> (char *id)</td></tr>
+<tr class="separator:a71a18581ec29de8d483495a7055281c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28b9573f49c338ba8d0ddfe4d74176fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#a28b9573f49c338ba8d0ddfe4d74176fd">insertAtIdInner</a> (<a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> html, char *id)</td></tr>
+<tr class="separator:a28b9573f49c338ba8d0ddfe4d74176fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00cc4fe93ce43016d88e011fd28f646d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#a00cc4fe93ce43016d88e011fd28f646d">parse_html_wrapper</a> (<a class="el" href="structparse__html__args.html">parse_html_args</a> in)</td></tr>
 <tr class="separator:a00cc4fe93ce43016d88e011fd28f646d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af24112a36c0dc7f53feb9d064019e222"><td class="memItemLeft" align="right" valign="top"><a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#af24112a36c0dc7f53feb9d064019e222">parse_html_core</a> (<a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> raw_html, <a class="el" href="structmarker__t.html">marker_t</a> marker)</td></tr>
 <tr class="separator:af24112a36c0dc7f53feb9d064019e222"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a236b6784517212c4a78be8b8db9b145b"><td class="memItemLeft" align="right" valign="top">EMSCRIPTEN_KEEPALIVE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#a236b6784517212c4a78be8b8db9b145b">display_html</a> (<a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> raw_html)</td></tr>
 <tr class="separator:a236b6784517212c4a78be8b8db9b145b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad0eda700955aeee9d359cc2cbbbd7b2"><td class="memItemLeft" align="right" valign="top">EMSCRIPTEN_KEEPALIVE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#aad0eda700955aeee9d359cc2cbbbd7b2">remove_html</a> (<a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> raw_html)</td></tr>
-<tr class="separator:aad0eda700955aeee9d359cc2cbbbd7b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cb2b0ec5add3204e1c9db0b95414085"><td class="memItemLeft" align="right" valign="top">EMSCRIPTEN_KEEPALIVE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#a5cb2b0ec5add3204e1c9db0b95414085">remove_static_html</a> (<a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> raw_html)</td></tr>
+<tr class="separator:a5cb2b0ec5add3204e1c9db0b95414085"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac110f81a2bb611a21bad374bc48dc50a"><td class="memItemLeft" align="right" valign="top">EMSCRIPTEN_KEEPALIVE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#ac110f81a2bb611a21bad374bc48dc50a">remove_html_with_class</a> (char *class_name)</td></tr>
+<tr class="separator:ac110f81a2bb611a21bad374bc48dc50a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab627a4f2281dbf80f07e19f0f6d25270"><td class="memItemLeft" align="right" valign="top">EMSCRIPTEN_KEEPALIVE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#ab627a4f2281dbf80f07e19f0f6d25270">display_html_loop</a> (<a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> html_formatter, char **elements, int num_elements, bool reverse)</td></tr>
+<tr class="separator:ab627a4f2281dbf80f07e19f0f6d25270"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15ee47c82ae3d771ea7ab7f8a65dcf74"><td class="memItemLeft" align="right" valign="top">EMSCRIPTEN_KEEPALIVE <a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#a15ee47c82ae3d771ea7ab7f8a65dcf74">render_html_loop</a> (<a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> html_formatter, char **elements, int num_elements, bool reverse)</td></tr>
+<tr class="separator:a15ee47c82ae3d771ea7ab7f8a65dcf74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc18961a391fe1dd8d971ab2fbafef57"><td class="memItemLeft" align="right" valign="top">EMSCRIPTEN_KEEPALIVE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#adc18961a391fe1dd8d971ab2fbafef57">remove_html_children_of_id</a> (char *id)</td></tr>
+<tr class="separator:adc18961a391fe1dd8d971ab2fbafef57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9b20ce7dfa34677289d4c3ce971c6e6"><td class="memItemLeft" align="right" valign="top">EMSCRIPTEN_KEEPALIVE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8c.html#aa9b20ce7dfa34677289d4c3ce971c6e6">insert_html_at_id</a> (<a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> raw_html, char *id)</td></tr>
+<tr class="separator:aa9b20ce7dfa34677289d4c3ce971c6e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -129,41 +141,7 @@ Variables</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A framework to write HTML directly within C and have it call C functions. Users interact with it through the <code>display_html</code> and <code>remove_html</code> functions, and the <code>html_t</code> and <code>HTML</code> macros in <a class="el" href="dcw_8h.html">dcw.h</a>. </p>
-</div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="ad7bacf2541029a8abefd4b8fd5e47884"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad7bacf2541029a8abefd4b8fd5e47884">&#9670;&nbsp;</a></span>dbg</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define dbg</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">to_print, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">formatter&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">    {                                                     \</div>
-<div class="line">        printf(#to_print <span class="stringliteral">&quot;: &quot;</span> #formatter <span class="stringliteral">&quot;\n&quot;</span>, to_print); \</div>
-<div class="line">    }</div>
-</div><!-- fragment --><p>A utility function for easy debug. It prints the variable name and its' value. Usage: char *hello_world = "Hello, World!"; dbg(hello_world, d);</p>
-<p>Output: "hello_world: Hello, World!" </p>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="a236b6784517212c4a78be8b8db9b145b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a236b6784517212c4a78be8b8db9b145b">&#9670;&nbsp;</a></span>display_html()</h2>
 
@@ -189,6 +167,56 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="ab627a4f2281dbf80f07e19f0f6d25270"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab627a4f2281dbf80f07e19f0f6d25270">&#9670;&nbsp;</a></span>display_html_loop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">EMSCRIPTEN_KEEPALIVE void display_html_loop </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a>&#160;</td>
+          <td class="paramname"><em>html_formatter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>elements</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num_elements</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>reverse</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Displays a <code>char**</code> as HTML inside a specific HTML formatter.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">html_formatter</td><td>Where each element of your <code>char**</code> will be rendered (e.g., "&lt;p&gt;%s&lt;/p&gt;") - use normal C formatters. </td></tr>
+    <tr><td class="paramname">elements</td><td>The array you want to render. </td></tr>
+    <tr><td class="paramname">num_elements</td><td>The number of elements of the <code>elements</code> array. </td></tr>
+    <tr><td class="paramname">reverse</td><td>If <code>true</code> , the array will be rendered in reverse. or char*. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a8bad87084459d4b6a23cf22a7d706d31"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8bad87084459d4b6a23cf22a7d706d31">&#9670;&nbsp;</a></span>displayInner()</h2>
 
@@ -207,6 +235,77 @@ Variables</h2></td></tr>
 <p>A JS funtion that renders the HTML to the DOM. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">html</td><td>The HTML you want to render. This should be of type html_t or char*. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa9b20ce7dfa34677289d4c3ce971c6e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9b20ce7dfa34677289d4c3ce971c6e6">&#9670;&nbsp;</a></span>insert_html_at_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">EMSCRIPTEN_KEEPALIVE void insert_html_at_id </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a>&#160;</td>
+          <td class="paramname"><em>raw_html</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A wrapper for <code>parse_html</code>, and the JS funtion <code>insertAtIdInner</code> .</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">raw_html</td><td>The HTML you want to display. This should be of type html_t or char*. </td></tr>
+    <tr><td class="paramname">id</td><td>The ID where you want to insert the parsed HTML at. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a28b9573f49c338ba8d0ddfe4d74176fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28b9573f49c338ba8d0ddfe4d74176fd">&#9670;&nbsp;</a></span>insertAtIdInner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void insertAtIdInner </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a>&#160;</td>
+          <td class="paramname"><em>html</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A JS funtion that renders the HTML to the DOM at a specific ID. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">html</td><td>The HTML you want to render. This should be of type html_t or char*. </td></tr>
+    <tr><td class="paramname">id</td><td>The id of the HTML you want to render. </td></tr>
   </table>
   </dd>
 </dl>
@@ -273,14 +372,64 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="aad0eda700955aeee9d359cc2cbbbd7b2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aad0eda700955aeee9d359cc2cbbbd7b2">&#9670;&nbsp;</a></span>remove_html()</h2>
+<a id="adc18961a391fe1dd8d971ab2fbafef57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc18961a391fe1dd8d971ab2fbafef57">&#9670;&nbsp;</a></span>remove_html_children_of_id()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">EMSCRIPTEN_KEEPALIVE void remove_html </td>
+          <td class="memname">EMSCRIPTEN_KEEPALIVE void remove_html_children_of_id </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A wrapper for the JS funtion <code>removeChildrenOfIdInner</code> .</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">class_name</td><td>The id of the HTML you want to remove the children of. This should be of type html_t or char*. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac110f81a2bb611a21bad374bc48dc50a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac110f81a2bb611a21bad374bc48dc50a">&#9670;&nbsp;</a></span>remove_html_with_class()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">EMSCRIPTEN_KEEPALIVE void remove_html_with_class </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>class_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A wrapper for the JS funtion <code>removeWithClassInner</code> .</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">class_name</td><td>The class of the HTML you want to remove. This should be of type html_t or char*. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5cb2b0ec5add3204e1c9db0b95414085"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cb2b0ec5add3204e1c9db0b95414085">&#9670;&nbsp;</a></span>remove_static_html()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">EMSCRIPTEN_KEEPALIVE void remove_static_html </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a>&#160;</td>
           <td class="paramname"><em>raw_html</em></td><td>)</td>
@@ -288,7 +437,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>A wrapper for <code>parse_html</code>, and the JS funtion <code>removeInner</code> .</p>
+<p>A wrapper for <code>parse_html</code>, and the JS funtion <code>removeStaticInner</code> .</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">raw_html</td><td>The HTML you want to remove. This should be of type html_t or char*. </td></tr>
@@ -298,14 +447,38 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a6a40df184b0d6261461f3f9d4ce575cb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6a40df184b0d6261461f3f9d4ce575cb">&#9670;&nbsp;</a></span>removeInner()</h2>
+<a id="a71a18581ec29de8d483495a7055281c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71a18581ec29de8d483495a7055281c6">&#9670;&nbsp;</a></span>removeChildrenOfIdInner()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void removeInner </td>
+          <td class="memname">void removeChildrenOfIdInner </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A JS funtion that removes the children of an HTML node with a specific ID. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">html</td><td>The ID of the parent HTML. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aeaca657d6c6fc56126b0cc0521538b0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeaca657d6c6fc56126b0cc0521538b0f">&#9670;&nbsp;</a></span>removeStaticInner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void removeStaticInner </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a>&#160;</td>
           <td class="paramname"><em>html</em></td><td>)</td>
@@ -313,12 +486,87 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>A JS funtion that removes HTML from the DOM. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>A JS funtion that removes static HTML from the DOM. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">html</td><td>The HTML you want to remove. This should be of type html_t or char*. </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a49968519ae90ff594810c5e5dbd3312d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49968519ae90ff594810c5e5dbd3312d">&#9670;&nbsp;</a></span>removeWithClassInner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void removeWithClassInner </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>class_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A JS funtion that removes HTML from the DOM with a specific class. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">html</td><td>The class of the HTML you want to remove. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a15ee47c82ae3d771ea7ab7f8a65dcf74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15ee47c82ae3d771ea7ab7f8a65dcf74">&#9670;&nbsp;</a></span>render_html_loop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">EMSCRIPTEN_KEEPALIVE <a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a> render_html_loop </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a>&#160;</td>
+          <td class="paramname"><em>html_formatter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>elements</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>num_elements</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>reverse</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Renders a <code>char**</code> as HTML inside a specific HTML formatter.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">html_formatter</td><td>Where each element of your <code>char**</code> will be rendered (e.g., "&lt;p&gt;%s&lt;/p&gt;") - use normal C formatters. </td></tr>
+    <tr><td class="paramname">elements</td><td>The array you want to render. </td></tr>
+    <tr><td class="paramname">num_elements</td><td>The number of elements of the <code>elements</code> array. </td></tr>
+    <tr><td class="paramname">reverse</td><td>If <code>true</code> , the array will be rendered in reverse.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The rendered HTML that can be inserted into any part of the DOM. or char*. </dd></dl>
 
 </div>
 </div>
@@ -335,7 +583,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">=</div>
-<div class="line"><span class="preprocessor"># 31 &quot;/mnt/c/Users/danil/source/repos/dancing_web/src/dcw.c&quot; 2</span></div>
+<div class="line"><span class="preprocessor"># 32 &quot;/mnt/c/Users/danil/source/repos/dancing_web/src/dcw.c&quot; 2</span></div>
 </div><!-- fragment --><p>The HTML that is displayed to the users then there is DCW encounters an error. </p>
 
 </div>
