@@ -7,4 +7,5 @@ releases_repo = "" # format: https://github.com/<owner>/<repo_name>
 
 [dependencies] # dependencies should not be added manually, use the tapm add command instead
 
-dcw = "danbugs/dancing_web 0.4.0"
+
+dcw = "danbugs/dancing_web 0.5.0"
