@@ -1,0 +1,10 @@
+[package]
+name = "form"
+version = "0.1.0" # format: major.minor.patch
+module_type = "main_module" # main_module || side_module
+build_dir = "build" # when modifying this field, change BUILD_DIR in the Makefile too
+releases_repo = "" # format: https://github.com/<owner>/<repo_name>
+
+[dependencies] # dependencies should not be added manually, use the tapm add command instead
+
+dcw = "danbugs/dancing_web 0.4.0"
