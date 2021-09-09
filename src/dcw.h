@@ -18,6 +18,8 @@
 */
 #define HTML(...) #__VA_ARGS__
 
+#define HTMLIFY(str) (html_t) str
+
 /** A utility function for easy debug. It prints the variable name and its' value.
     Usage:
     char *hello_world = "Hello, World!";

@@ -17,6 +17,7 @@
 #include <stdio.h>      // needed for sprintf
 #include <stdlib.h>     // needed for free
 #include <string.h>     // needed for strcat, and strlen
+#include <stdbool.h>    // needed for bool, true, and false
 
 /** \mainpage
     \n
@@ -39,7 +40,13 @@ extern void displayInner(html_t html);
 /** A JS funtion that removes HTML from the DOM.
     \param html The HTML you want to remove. This should be of type html_t or char*.
 */
-extern void removeInner(html_t html);
+extern void removeStaticInner(html_t html);
+
+extern void removeWithClassInner(char *class_name);
+
+extern void removeChildrenOfIdInner(char *id);
+
+extern void insertInner(html_t html, char* id);
 
 /** A wrapper around \c parse_html_core to allow setting default argument
    values. \param in This should contain the some raw html and, maybe, the type
@@ -157,8 +164,62 @@ void display_html(html_t raw_html)
    or char*.
 */
 EMSCRIPTEN_KEEPALIVE
-void remove_html(html_t raw_html)
+void remove_static_html(html_t raw_html)
 {
     html_t rendered_html = parse_html(raw_html);
-    removeInner(rendered_html);
+    removeStaticInner(rendered_html);
 }
+
+EMSCRIPTEN_KEEPALIVE
+void remove_html_with_class(char *class_name)
+{
+    removeWithClassInner(class_name);
+}
+
+EMSCRIPTEN_KEEPALIVE
+void display_html_loop(html_t html_formatter, char **elements, int num_elements, bool reverse)
+{
+    int i;
+
+    for ((reverse) ? (i = num_elements - 1) : (i = 0); (reverse) ? (i >= 0) : (i < num_elements); (reverse) ? (i--) : (i++))
+    {
+        char *tmp;
+        asprintf(&tmp, html_formatter,
+                 *(elements + i));
+        display_html(tmp);
+        free(tmp);
+    }
+}
+
+EMSCRIPTEN_KEEPALIVE
+html_t render_html_loop(html_t html_formatter, char **elements, int num_elements, bool reverse)
+{
+    int i;
+
+    char *result = (char*) NULL;
+    char *full_formatter = malloc(sizeof(html_formatter) + 4);
+    strcat(full_formatter, "%s");
+    strcat(full_formatter, html_formatter);
+
+    for ((reverse) ? (i = num_elements - 1) : (i = 0); (reverse) ? (i >= 0) : (i < num_elements); (reverse) ? (i--) : (i++))
+    {
+        asprintf(&result, full_formatter, (result) ? (result) : (""),
+                 *(elements + i));
+    }
+
+    free(full_formatter);
+    return result;
+}
+
+EMSCRIPTEN_KEEPALIVE
+void remove_html_children_of_id(char *id)
+{
+    removeChildrenOfIdInner(id);
+}
+
+EMSCRIPTEN_KEEPALIVE
+void insert_html(html_t raw_html, char *id)
+{
+    html_t rendered_html = parse_html(raw_html);
+    insertInner(rendered_html, id);
+};

@@ -1,0 +1,6 @@
+HTML(
+   <div class="counter">
+       <p>${get_counter()}$</p>
+       <button onclick="$E{increase_counter()}$">Increase Counter</button>
+   </div> 
+);
