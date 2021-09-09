@@ -92,12 +92,50 @@ This graph shows which files directly or indirectly include this file:</div>
 Macros</h2></td></tr>
 <tr class="memitem:af567bc1a447b57bc4f446b93f5a3e8d2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a>&#160;&#160;&#160;char *</td></tr>
 <tr class="separator:af567bc1a447b57bc4f446b93f5a3e8d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb7919934cdf0c9f8d1a017e77cd1b47"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8h.html#adb7919934cdf0c9f8d1a017e77cd1b47">HTML</a>(...)&#160;&#160;&#160;#__VA_ARGS__;</td></tr>
+<tr class="memitem:adb7919934cdf0c9f8d1a017e77cd1b47"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8h.html#adb7919934cdf0c9f8d1a017e77cd1b47">HTML</a>(...)&#160;&#160;&#160;#__VA_ARGS__</td></tr>
 <tr class="separator:adb7919934cdf0c9f8d1a017e77cd1b47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1265783e5741118f6b03f8b1b463ffbc"><td class="memItemLeft" align="right" valign="top"><a id="a1265783e5741118f6b03f8b1b463ffbc"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HTMLIFY</b>(str)&#160;&#160;&#160;(<a class="el" href="dcw_8h.html#af567bc1a447b57bc4f446b93f5a3e8d2">html_t</a>) str</td></tr>
+<tr class="separator:a1265783e5741118f6b03f8b1b463ffbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7bacf2541029a8abefd4b8fd5e47884"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dcw_8h.html#ad7bacf2541029a8abefd4b8fd5e47884">dbg</a>(to_print,  formatter)</td></tr>
+<tr class="separator:ad7bacf2541029a8abefd4b8fd5e47884"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Useful macros intended to be used by the end-user. </p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ad7bacf2541029a8abefd4b8fd5e47884"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7bacf2541029a8abefd4b8fd5e47884">&#9670;&nbsp;</a></span>dbg</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define dbg</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">to_print, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">formatter&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">    {                                                     \</div>
+<div class="line">        printf(#to_print <span class="stringliteral">&quot;: &quot;</span> #formatter <span class="stringliteral">&quot;\n&quot;</span>, to_print); \</div>
+<div class="line">    }</div>
+</div><!-- fragment --><p>A utility function for easy debug. It prints the variable name and its' value. Usage: char *hello_world = "Hello, World!"; dbg(hello_world, d);</p>
+<p>Output: "hello_world: Hello, World!" </p>
+
+</div>
+</div>
 <a id="adb7919934cdf0c9f8d1a017e77cd1b47"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adb7919934cdf0c9f8d1a017e77cd1b47">&#9670;&nbsp;</a></span>HTML</h2>
 
@@ -109,7 +147,7 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>...</em></td><td>)</td>
-          <td>&#160;&#160;&#160;#__VA_ARGS__;</td>
+          <td>&#160;&#160;&#160;#__VA_ARGS__</td>
         </tr>
       </table>
 </div><div class="memdoc">

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['marker_5ft_9',['marker_t',['../structmarker__t.html',1,'']]],
-  ['marker_5ftype_10',['marker_type',['../dcw__internal_8h.html#a12f1ea9cb1decaed2f0c35213be6e7db',1,'dcw_internal.h']]]
+  ['insert_5fhtml_5fat_5fid_10',['insert_html_at_id',['../dcw_8c.html#aa9b20ce7dfa34677289d4c3ce971c6e6',1,'dcw.c']]],
+  ['insertatidinner_11',['insertAtIdInner',['../dcw_8c.html#a28b9573f49c338ba8d0ddfe4d74176fd',1,'dcw.c']]]
 ];

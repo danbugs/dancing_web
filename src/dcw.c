@@ -17,6 +17,7 @@
 #include <stdio.h>      // needed for sprintf
 #include <stdlib.h>     // needed for free
 #include <string.h>     // needed for strcat, and strlen
+#include <stdbool.h>    // needed for bool, true, and false
 
 /** \mainpage
     \n
@@ -36,14 +37,31 @@ html_t ERROR_HTML =
 */
 extern void displayInner(html_t html);
 
-/** A JS funtion that removes HTML from the DOM.
+/** A JS funtion that removes static HTML from the DOM.
     \param html The HTML you want to remove. This should be of type html_t or char*.
 */
-extern void removeInner(html_t html);
+extern void removeStaticInner(html_t html);
+
+/** A JS funtion that removes HTML from the DOM with a specific class.
+    \param html The class of the HTML you want to remove.
+*/
+extern void removeWithClassInner(char *class_name);
+
+/** A JS funtion that removes the children of an HTML node with a specific ID.
+    \param html The ID of the parent HTML.
+*/
+extern void removeChildrenOfIdInner(char *id);
+
+/** A JS funtion that renders the HTML to the DOM at a specific ID.
+    \param html The HTML you want to render. This should be of type html_t or char*.
+    \param id The id of the HTML you want to render.
+*/
+extern void insertAtIdInner(html_t html, char* id);
 
 /** A wrapper around \c parse_html_core to allow setting default argument
    values. \param in This should contain the some raw html and, maybe, the type
-   of marker to look for. \return The HTML that is ready to be rendered.
+   of marker to look for. 
+   \return The HTML that is ready to be rendered.
 */
 html_t parse_html_wrapper(parse_html_args in)
 {
@@ -74,7 +92,8 @@ html_t parse_html_wrapper(parse_html_args in)
 
 /** Find and execute any C function calls within the raw html.
     \param raw_html The HTML you want to parse. This should be of type html_t or
-   char*. \return The HTML that is ready to be rendered.
+   char*. 
+   \return The HTML that is ready to be rendered.
 */
 html_t parse_html_core(html_t raw_html, marker_t marker)
 {
@@ -151,14 +170,102 @@ void display_html(html_t raw_html)
     displayInner(rendered_html);
 }
 
-/** A wrapper for \c parse_html, and the JS funtion \c removeInner .
+/** A wrapper for \c parse_html, and the JS funtion \c removeStaticInner .
 
     \param raw_html The HTML you want to remove. This should be of type html_t
    or char*.
 */
 EMSCRIPTEN_KEEPALIVE
-void remove_html(html_t raw_html)
+void remove_static_html(html_t raw_html)
 {
     html_t rendered_html = parse_html(raw_html);
-    removeInner(rendered_html);
+    removeStaticInner(rendered_html);
 }
+
+/** A wrapper for the JS funtion \c removeWithClassInner .
+
+    \param class_name The class of the HTML you want to remove. This should be of type html_t
+   or char*.
+*/
+EMSCRIPTEN_KEEPALIVE
+void remove_html_with_class(char *class_name)
+{
+    removeWithClassInner(class_name);
+}
+
+/** Displays a \c char** as HTML inside a specific HTML formatter.
+
+    \param html_formatter Where each element of your \c char** will be rendered (e.g., "<p>%s</p>") - use normal C formatters.
+    \param elements The array you want to render.
+    \param num_elements The number of elements of the \c elements array.
+    \param reverse If \c true , the array will be rendered in reverse.
+   or char*.
+*/
+EMSCRIPTEN_KEEPALIVE
+void display_html_loop(html_t html_formatter, char **elements, int num_elements, bool reverse)
+{
+    int i;
+
+    for ((reverse) ? (i = num_elements - 1) : (i = 0); (reverse) ? (i >= 0) : (i < num_elements); (reverse) ? (i--) : (i++))
+    {
+        char *tmp;
+        asprintf(&tmp, html_formatter,
+                 *(elements + i));
+        display_html(tmp);
+        free(tmp);
+    }
+}
+
+/** Renders a \c char** as HTML inside a specific HTML formatter.
+
+    \param html_formatter Where each element of your \c char** will be rendered (e.g., "<p>%s</p>") - use normal C formatters.
+    \param elements The array you want to render.
+    \param num_elements The number of elements of the \c elements array.
+    \param reverse If \c true , the array will be rendered in reverse.
+
+    \return The rendered HTML that can be inserted into any part of the DOM. 
+   or char*.
+*/
+EMSCRIPTEN_KEEPALIVE
+html_t render_html_loop(html_t html_formatter, char **elements, int num_elements, bool reverse)
+{
+    int i;
+
+    char *result = (char*) NULL;
+    char *full_formatter = malloc(sizeof(html_formatter) + 4);
+    strcat(full_formatter, "%s");
+    strcat(full_formatter, html_formatter);
+
+    for ((reverse) ? (i = num_elements - 1) : (i = 0); (reverse) ? (i >= 0) : (i < num_elements); (reverse) ? (i--) : (i++))
+    {
+        asprintf(&result, full_formatter, (result) ? (result) : (""),
+                 *(elements + i));
+    }
+
+    free(full_formatter);
+    return result;
+}
+
+/** A wrapper for the JS funtion \c removeChildrenOfIdInner .
+
+    \param class_name The id of the HTML you want to remove the children of. This should be of type html_t
+   or char*.
+*/
+EMSCRIPTEN_KEEPALIVE
+void remove_html_children_of_id(char *id)
+{
+    removeChildrenOfIdInner(id);
+}
+
+/** A wrapper for \c parse_html, and the JS funtion \c insertAtIdInner .
+
+    \param raw_html The HTML you want to display. This should be of type html_t
+   or char*.
+   \param id The ID where you want to insert the parsed HTML at.
+*/
+EMSCRIPTEN_KEEPALIVE
+void insert_html_at_id(html_t raw_html, char *id)
+{
+    html_t rendered_html = parse_html(raw_html);
+    insertAtIdInner(rendered_html, id);
+};
