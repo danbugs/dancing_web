@@ -130,9 +130,7 @@ html_t parse_html_core(html_t raw_html, marker_t marker)
 
         char rendered_html[strlen(html_until_marker) + strlen(html_after_marker) + strlen(evaled) + 1];
 
-        strcat(rendered_html, html_until_marker);
-        strcat(rendered_html, evaled);
-        strcat(rendered_html, html_after_marker);
+        sprintf(rendered_html, "%s%s%s", html_until_marker, evaled, html_after_marker);
 
         if (marker.type == RENDERABLE_MARKERS)
         {
