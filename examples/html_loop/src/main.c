@@ -4,6 +4,8 @@
 #include <emscripten.h>
 #include "../dependencies/dcw/dcw.h"
 
+#define NUM_MONTHS (int) 12
+
 html_t main_h = HTMLIFY("<div id='main_body'></div>");
 html_t list_h = HTMLIFY("<p>%s</p>");
 
@@ -11,11 +13,9 @@ extern html_t render_html_loop(html_t html_formatter, char **elements, int num_e
 extern void insert_html_at_id(html_t raw_html, char *id);
 extern void display_html(html_t raw_html);
 
-html_t list_elements()
+void list_elements()
 {
-    const int num_months = 12;
-
-    char *months[num_months] = {
+    char *months[NUM_MONTHS] = {
         "January",
         "February",
         "March",
@@ -29,7 +29,7 @@ html_t list_elements()
         "November",
         "December"};
 
-    html_t some_html = render_html_loop(list_h, months, num_months, false);
+    html_t some_html = render_html_loop(list_h, months, NUM_MONTHS, false);
     insert_html_at_id(some_html, "main_body");
     free(some_html);
 }

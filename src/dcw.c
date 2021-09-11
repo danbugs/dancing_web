@@ -230,10 +230,9 @@ html_t render_html_loop(html_t html_formatter, char **elements, int num_elements
     int i;
 
     char *result = (char*) NULL;
-    char *full_formatter = malloc(sizeof(html_formatter) + 4);
-    strcat(full_formatter, "%s");
-    strcat(full_formatter, html_formatter);
-
+    char *full_formatter;
+    asprintf(&full_formatter, "%%s%s", html_formatter);
+    
     for ((reverse) ? (i = num_elements - 1) : (i = 0); (reverse) ? (i >= 0) : (i < num_elements); (reverse) ? (i--) : (i++))
     {
         asprintf(&result, full_formatter, (result) ? (result) : (""),
